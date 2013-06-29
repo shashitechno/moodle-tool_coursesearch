@@ -27,5 +27,5 @@
 defined('MOODLE_INTERNAL') || die;
 
 if ($hassiteconfig) {
-$ADMIN->add('courses', new admin_externalpage('toolcoursesearch', get_string('pluginname', 'tool_coursesearch'), "$CFG->wwwroot/$CFG->admin/tool/coursesearch/index.php",'moodle/role:manage'));
+$ADMIN->add('courses', new admin_externalpage('toolcoursesearch', get_string('pluginname', 'tool_coursesearch'), "$CFG->wwwroot/$CFG->admin/tool/coursesearch/index.php",'moodle/site:config', true));
 }
