@@ -1,6 +1,6 @@
 
 
-    <?php 
+ <?php 
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -33,11 +33,25 @@
 	
 	 require_sesskey();
 
-    $action = strtolower(POSTGET("action"));
+   $action = optional_param('action','ping', PARAM_STRINGID);
 	
 	// check the action and behave accrodingly
+	
+   switch($action){
+   	
+	case 'ping': tool_coursesearch_ping();
+   	break;
+   	case 'index': tool_coursesearch_index();
+   	break;
+   	case 'optimize': tool_coursesearch_optimize();
+   	break;
+   	case 'deleteall': tool_coursesearch_deleteAll();
+   	break;
+   	case 'search': tool_coursesearch_search();
+   	break;
+   }
 
-    if($action=='ping')
+    function tool_coursesearch_ping()
     {  
         $options = solr_get_options();
 		$arr = array();
@@ -54,13 +68,13 @@
 		
 		exit();
     }	
-    else if($action=='index')
+    function tool_coursesearch_index()
     {
 	    $prev = POSTGET('prev');
 		solr_load_all(solr_params(), $prev);
 		exit();  
     }
-    else if ($action=="deleteall")
+    function tool_coursesearch_deleteAll()
 	 {
 		$options = solr_params();
 		$arr = array();
@@ -82,7 +96,7 @@
 		print(json_encode($arr));
 		exit();
 	}	
-    else if ($action=="optimize") {
+    function tool_coursesearch_optimize() {
 		$options = solr_params();
 		$arr = array();
 
@@ -141,7 +155,7 @@
 	   $options = array();
          $options['mss_solr_host']= get_config('tool_coursesearch','solrhost');
 	   $options['mss_solr_port']= get_config('tool_coursesearch','solrport');
-	   $options['mss_solr_path']= get_config('tool_coursesearch','solrpath'); 	  
+	   $options['mss_solr_path']= get_config('tool_coursesearch','solrpath');  
            return $options;
     }
   /**
@@ -279,7 +293,7 @@ function mss_query( $qry, $offset, $count, $fq, $sortby, $options) {
 	$response = NULL;
 //	$facet_fields = array();
 	$options = solr_params(); // uncommented in 2.0.3
-var_dump($options);
+
 	$solr = new Solr_basic();
 	if ($solr->connect($options, true)) {
 
@@ -363,9 +377,9 @@ var_dump($options);
 	}
 	return $response;
 }
-function mss_search_results() {
+function tool_coursesearch_search() {
 	$plugin_mss_settings = solr_get_options();
-	
+	 
 	$qry = stripslashes($_GET['s']);
 	$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
 	$count = (isset($_GET['count'])) ? $_GET['count'] :10;
@@ -418,4 +432,4 @@ function mss_search_results() {
 			
 	return $out;
 }
-mss_search_results();
+
