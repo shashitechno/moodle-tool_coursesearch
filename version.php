@@ -1,4 +1,4 @@
-	<?php
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -29,6 +29,3 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2013060100; // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2013051400; // Requires this Moodle version
 $plugin->component = 'tool_coursesearch'; // Full name of the plugin (used for diagnostics)
-$plugin->cron      = 0;
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '2.5';

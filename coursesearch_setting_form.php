@@ -1,4 +1,4 @@
-    <?php
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,17 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * 
+ * Transfer form
  *
- * @package    tool
- * @subpackage coursesearch
- * @copyright  2013 Shashikant Vaishnav  {@link http://moodle.com}
+ * @package    tool_coursesearch
+ * @copyright  2013 Shashikant Vaishnav
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->libdir.'/formslib.php');
+//require_once(__DIR__.'/locallib.php');
 
 /**
  * Definition course search settings form.
@@ -38,10 +38,12 @@ class coursesearch_settings_form extends moodleform {
     /**
      * Define setting form.
      */
+    
+    
     protected function definition() {
         global $CFG;
-
         $mform = $this->_form;
+        $instance = $this->_customdata;
         $mform->addElement('header', 'course', get_string('solrheading', 'tool_coursesearch'));
 
         
@@ -54,22 +56,25 @@ class coursesearch_settings_form extends moodleform {
         $mform->addElement('text', 'solrpath', get_string('solrpath','tool_coursesearch'));
         $mform->setType('solrpath',PARAM_ALPHANUMEXT);
         $mform->setDefault('solrpath',"/solr");
-
-       
+        
+        
 
         $mform->addRule('solrhost', get_string('required'), 'required', null);
         $mform->addRule('solrport', get_string('required'), 'required', null);
         $mform->addRule('solrpath', get_string('required'), 'required', null);
-		$mform->addElement('button', 'pingstatus', get_string("pingstatus", 'tool_coursesearch'));
-	
+        $mform->addElement('button', 'solr-btn-ping', get_string("pingstatus", 'tool_coursesearch'));
+	//	$mform->addHelpButton('enablespellcheck', 'enablespellcheck', 'tool_coursesearch');
         $mform->addElement('header', 'coursesearch', get_string('actions', 'tool_coursesearch'));
-		$mform->addElement('button','loadcontent', get_string('loadcontent', 'tool_coursesearch'));
-		$mform->addElement('button','optimize', get_string('optimize', 'tool_coursesearch'));
-        $mform->addElement('button','delete' ,get_string('delete', 'tool_coursesearch'));
-
+        
+        $mform->addElement('button','solr-btn-loadcontent', get_string('loadcontent', 'tool_coursesearch'));
+        $mform->addElement('button','solr-btn-optimize', get_string('optimize', 'tool_coursesearch'));
+        $mform->addElement('button','solr-btn-deleteall' ,get_string('delete', 'tool_coursesearch'));
         $mform->addElement('header', 'coursesearch', get_string('options', 'tool_coursesearch'));
-		$mform->addElement('advcheckbox', 'enablespellcheck', get_string('enablespellcheck', 'tool_coursesearch'));
-		$mform->setType('enablespellcheck', PARAM_BOOL);
-		$this->add_action_buttons(false, get_string('savesettings', 'tool_coursesearch'));
+        $mform->addElement('advcheckbox', 'enablespellcheck', get_string('enablespellcheck', 'tool_coursesearch'));
+        $mform->setType('enablespellcheck', PARAM_BOOL);
+        $this->add_action_buttons(false, get_string('savesettings', 'tool_coursesearch'));
     }
+
+
+    
 }

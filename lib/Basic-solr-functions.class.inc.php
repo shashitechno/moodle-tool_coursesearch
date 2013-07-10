@@ -19,11 +19,11 @@ Class Solr_basic {
 		return $this->_lastErrorMessage;
 	}
 	
-	public function connect($options, $ping = false) {
+	public function connect($options, $ping = false,$path='') {
 		// get the connection options
-		$this->_solrHost = $options['mss_solr_host'];
-		$this->_solrPort = $options['mss_solr_port'];
-		$this->_solrPath = $options['mss_solr_path'];
+		$this->_solrHost = $options['solr_host'];
+		$this->_solrPort = $options['solr_port'];
+		$this->_solrPath = $options['solr_path'];
 	
 		// double check everything has been set
 		if ( ! ($this->_solrHost and $this->_solrPort and $this->_solrPath) ) {
@@ -34,7 +34,7 @@ Class Solr_basic {
 	
 		// create the solr service object
 		try {
-			require_once("SolrPhpClient/Apache/Solr/HttpTransport/Curl.php");			
+			require_once($path. "/SolrPhpClient/Apache/Solr/HttpTransport/Curl.php");			
 			$httpTransport = new Apache_Solr_HttpTransport_Curl();
 			$this->_solr = new Apache_Solr_Service($this->_solrHost, $this->_solrPort, $this->_solrPath, $httpTransport);
 			} catch ( Exception $e ) {

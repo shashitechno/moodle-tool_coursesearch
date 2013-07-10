@@ -1,4 +1,4 @@
-	<?php
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,19 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * 
+ * Transfer tool
  *
- * @package    tool
- * @subpackage coursesearch
- * @copyright  2013 Shashikant Vaishnav  {@link http://moodle.com}
+ * @package    tool_coursesearch
+ * @copyright  2013 Shashikant Vaishanv
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define('NO_OUTPUT_BUFFERING', true);
 
-require('../../../config.php');
+require_once(dirname(__FILE__) . '/../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
+require_once($CFG->libdir.'/moodlelib.php');
 require_once('coursesearch_setting_form.php');
+
 
 require_login();
 admin_externalpage_setup('toolcoursesearch');
@@ -35,25 +36,38 @@ admin_externalpage_setup('toolcoursesearch');
 // Create the form.
 $form = new coursesearch_settings_form();
 
+$formdata = new stdClass();
 // If we have valid input.
 if ($data = $form->get_data()) {
 	$solroptions = array();
-    if ($data->solrhost) {
-        $solroptions['solrhost'] = $data->solrhost;
-    }
-    if ($data->solrport) {
-        $solroptions['solrport'] = $data->solrport;
-    }
-               //  apropriate action	
-  }
+	if ($data->solrhost) {
+		
+		$formdata->solrhost = $data->solrhost;
+		set_config('solrhost',$data->solrhost,'tool_coursesearch');
+	}
+	if ($data->solrport) {
+		$formdata->solrport= $data->solrport;
+		set_config('solrport',$data->solrport,'tool_coursesearch');
+		
+	}
+	if($data->solrpath)
+	{
+		$formdata->solrpath= $data->solrpath;
+		set_config('solrpath',$data->solrpath,'tool_coursesearch');
+	}
+               // call apropriate action	
+}
+$form->set_data($formdata);
 
-// Otherwise display the settings form.
+// Otherwise display the settings form. 
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('solrconfig', 'tool_coursesearch'));
 
 $info = format_text(get_string('coursesearchintro', 'tool_coursesearch'), FORMAT_MARKDOWN);
 echo $OUTPUT->box($info);
 
-$form->display();
-
+//$form->display();
+$renderer = $PAGE->get_renderer('tool_coursesearch');
+echo $renderer->moodleform(new coursesearch_settings_form());
+    //print_r($form->get_data());
 echo $OUTPUT->footer();

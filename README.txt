@@ -1,4 +1,4 @@
-	Installation
+Installation
 
 First, establish the correct place in the moodle code 'tree' for the plugin.
 
