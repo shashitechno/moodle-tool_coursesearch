@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Transfer form
+ * Solr Config form
  *
  * @package    tool_coursesearch
  * @copyright  2013 Shashikant Vaishnav
