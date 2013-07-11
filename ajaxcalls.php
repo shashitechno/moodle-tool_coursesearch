@@ -29,7 +29,7 @@
 
 	require_sesskey();
 
-	$action = optional_param('action','ping', PARAM_STRINGID);
+	$action = optional_param('action','ping', PARAM_TEXT);
 
 		// check the action and behave accrodingly
 
