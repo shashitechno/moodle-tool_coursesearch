@@ -1,5 +1,4 @@
 
-
 <?php 
 // This file is part of Moodle - http://moodle.org/
 //
@@ -17,12 +16,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Library of functions for database manipulation.
+ * functions that talks between Solr's instance and SOlrPhpClient Library
  *
  * Other main libraries:
- * - weblib.php - functions that produce web output
- * - moodlelib.php - general-purpose Moodle functions
- *
+ * Basic-solr-functions.class.inc.php general fucnctions that handles indexing
  * @package    coursesearch
  * @copyright  2013 Shashikant Vaishnav  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -70,7 +67,7 @@ function tool_coursesearch_ping()
 }	
 function tool_coursesearch_index()
 {
-	$prev = POSTGET('prev');
+	$prev = optional_param('prev',0,PARAM_INT);
 	solr_load_all(solr_params(), $prev);
 	exit();  
 }
@@ -128,12 +125,11 @@ function tool_coursesearch_optimize() {
       function solr_get_options()
       {
       	$options = array();
-      	$options['solr_host']=POSTGET('host');
-      	$options['solr_port']=POSTGET('port');
-      	$options['solr_path']=  POSTGET('path');
-
-      	return $options;
-      }
+      	$options['solr_host'] = optional_param('host','localhost',PARAM_TEXT);
+      	$options['solr_port'] = optional_param('port',8983,PARAM_INT);
+      	$options['solr_path']=  optional_param('path','/solr',PARAM_TEXT);
+          return $options;
+     }
   /**
  * Return the value retrieved by either  POST or GET action
  *
