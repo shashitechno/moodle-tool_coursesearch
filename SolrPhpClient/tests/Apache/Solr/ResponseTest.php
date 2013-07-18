@@ -95,11 +95,11 @@ class Apache_Solr_ResponseTest extends PHPUnit_Framework_TestCase
 		$fixture = self::get200Response();
 
 		// test top level gets
-		$this->assertInstanceOf('stdClass', $fixture->responseHeader);
+		$this->assertType('stdClass', $fixture->responseHeader);
 		$this->assertEquals(0, $fixture->responseHeader->status);
 		$this->assertEquals(0, $fixture->responseHeader->QTime);
 
-		$this->assertInstanceOf('stdClass', $fixture->response);
+		$this->assertType('stdClass', $fixture->response);
 		$this->assertEquals(0, $fixture->response->numFound);
 
 		$this->assertTrue(is_array($fixture->response->docs));
@@ -153,7 +153,7 @@ class Apache_Solr_ResponseTest extends PHPUnit_Framework_TestCase
 		$fixture = self::get200ResponseWithDocuments();
 
 		$this->assertTrue(count($fixture->response->docs) > 0, 'There are not 1 or more documents, cannot test');
-		$this->assertInstanceOf('Apache_Solr_Document', $fixture->response->docs[0], 'The first document is not of type Apache_Solr_Document');
+		$this->assertType('Apache_Solr_Document', $fixture->response->docs[0], 'The first document is not of type Apache_Solr_Document');
 	}
 	
 	public function testDontCreateDocuments()
@@ -161,7 +161,7 @@ class Apache_Solr_ResponseTest extends PHPUnit_Framework_TestCase
 		$fixture = self::get200ResponseWithDocuments(false);
 
 		$this->assertTrue(count($fixture->response->docs) > 0, 'There are not 1 or more documents, cannot test');
-		$this->assertInstanceOf('stdClass', $fixture->response->docs[0], 'The first document is not of type stdClass');
+		$this->assertType('stdClass', $fixture->response->docs[0], 'The first document is not of type stdClass');
 	}
 	
 	public function testGetHttpStatusMessage()

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2007-2012, Parametric Technology Corporation
+ * Copyright (c) 2007-2011, Servigistics, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,18 +27,19 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @copyright Copyright 2007-2012 Parametric Technology Corporation (http://ptc.com)
+ * @copyright Copyright 2007-2011 Servigistics, Inc. (http://servigistics.com)
  * @license http://solr-php-client.googlecode.com/svn/trunk/COPYING New BSD
- * @version $Id$
+ * @version $Id: Balancer.php 54 2011-02-04 16:29:18Z donovan.jimenez $
  *
  * @package Apache
  * @subpackage Solr
- * @author Donovan Jimenez, Dan Wolfe
+ * @author Donovan Jimenez <djimenez@conduit-it.com>, Dan Wolfe
  */
 
 // See Issue #1 (http://code.google.com/p/solr-php-client/issues/detail?id=1)
 // Doesn't follow typical include path conventions, but is more convenient for users
 require_once(dirname(dirname(__FILE__)) . '/Service.php');
+
 require_once(dirname(dirname(__FILE__)) . '/NoServiceAvailableException.php');
 
 /**
@@ -52,17 +53,12 @@ class Apache_Solr_Service_Balancer
 	/**
 	 * SVN Revision meta data for this class
 	 */
-	const SVN_REVISION = '$Revision$';
+	const SVN_REVISION = '$Revision: 54 $';
 
 	/**
 	 * SVN ID meta data for this class
 	 */
-	const SVN_ID = '$Id$';
-
-	/**
-	 * SVN HeadURL meta data for this class
-	 */
-	const SVN_URL = '$HeadURL$';
+	const SVN_ID = '$Id: Balancer.php 54 2011-02-04 16:29:18Z donovan.jimenez $';
 
 	protected $_createDocuments = true;
 

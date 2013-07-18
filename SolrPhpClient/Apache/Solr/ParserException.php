@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2007-2012, Parametric Technology Corporation
+ * Copyright (c) 2007-2011, Servigistics, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,13 +27,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @copyright Copyright 2007-2012 Parametric Technology Corporation (http://ptc.com)
+ * @copyright Copyright 2007-2011 Servigistics, Inc. (http://servigistics.com)
  * @license http://solr-php-client.googlecode.com/svn/trunk/COPYING New BSD
- * @version $Id$
+ * @version $Id: ParserException.php 54 2011-02-04 16:29:18Z donovan.jimenez $
  *
  * @package Apache
  * @subpackage Solr
- * @author Donovan Jimenez
+ * @author Donovan Jimenez <djimenez@conduit-it.com>
  */
 
 class Apache_Solr_ParserException extends Apache_Solr_Exception
@@ -41,10 +41,10 @@ class Apache_Solr_ParserException extends Apache_Solr_Exception
 	/**
 	 * SVN Revision meta data for this class
 	 */
-	const SVN_REVISION = '$Revision$';
+	const SVN_REVISION = '$Revision: 54 $';
 
 	/**
 	 * SVN ID meta data for this class
 	 */
-	const SVN_ID = '$Id$';
+	const SVN_ID = '$Id: ParserException.php 54 2011-02-04 16:29:18Z donovan.jimenez $';
 }
