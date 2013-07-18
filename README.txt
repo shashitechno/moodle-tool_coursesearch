@@ -45,17 +45,17 @@ and not inside of your drupal directory).
 
 The Solr download comes with an example application that you can use for
 testing, development, and even for smaller production sites. This
-application is found at apache-solr-1.4.1/example.
+application is found at apache-solr-3.6.2/example.
 
-Move apache-solr-1.4.1/example/solr/conf/schema.xml and rename it to
+Move apache-solr-3.6.2/example/solr/conf/schema.xml and rename it to
 something like schema.bak. Then move the schema.xml that comes 
 with moodle course search admin tool plugin to take its place.
 
-Similarly, move apache-solr-1.4.1/example/solr/conf/solrconfig.xml and rename
+Similarly, move apache-solr-3.6.2/example/solr/conf/solrconfig.xml and rename
 it like solrconfig.bak. Then move the solrconfig.xml that comes with the
 moodle course search admin tool plugin to take its place.
 
-Finally, move apache-solr-1.4.1/example/solr/conf/protwords.txt and rename
+Finally, move apache-solr-3.6.2/example/solr/conf/protwords.txt and rename
 it like protwords.bak. Then move the protwords.txt that comes with the
 moodle course search admin tool plugin  to take its place.
 
@@ -70,7 +70,7 @@ stopwords.txt
 synonyms.txt
 
 Now start the solr application by opening a shell, changing directory to
-apache-solr-1.4.1/example, and executing the command java -jar start.jar
+apache-solr-3.6.2/example, and executing the command java -jar start.jar
 
 Test that your solr server is now available by visiting
 http://localhost:8983/solr/admin/
@@ -94,6 +94,6 @@ Solr path :- /solr (Configuration directory for solr)
 
 Enjoy the Search by going on page (http://127.0.0.1/MoodleInstallationURL/course/search.php)
 
-The plugin is tested properly. But its under development. Please mail me if you found any issue.
+The plugin is tested properly. But its under development. Please mail me if you found any issue. @Shashikantvaishnaw@gmail.com
 
 Thanks :) 
