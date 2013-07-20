@@ -22,52 +22,53 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define('NO_OUTPUT_BUFFERING', true);
+    define('NO_OUTPUT_BUFFERING', true);
 
-require_once(dirname(__FILE__) . '/../../../config.php');
-require_once($CFG->libdir.'/adminlib.php');
-require_once($CFG->libdir.'/moodlelib.php');
-require_once('coursesearch_setting_form.php');
+    require_once(dirname(__FILE__) . '/../../../config.php');
+    require_once($CFG->libdir.'/adminlib.php');
+    require_once($CFG->libdir.'/moodlelib.php');
+    require_once('coursesearch_setting_form.php');
 
 
-require_login();
-admin_externalpage_setup('toolcoursesearch');
+    require_login();
+    admin_externalpage_setup('toolcoursesearch');
 
 // Create the form.
-$form = new coursesearch_settings_form();
+    $form = new coursesearch_settings_form();
 
-$formdata = new stdClass();
+    $formdata = new stdClass();
 // If we have valid input.
-if ($data = $form->get_data()) {
+    if ($data = $form->get_data()) {
 	$solroptions = array();
-	if ($data->solrhost) {
-		
-		$formdata->solrhost = $data->solrhost;
+    if ($data->solrhost) {
+        
+			    $formdata->solrhost = $data->solrhost;
 		set_config('solrhost',$data->solrhost,'tool_coursesearch');
-	}
-	if ($data->solrport) {
-		$formdata->solrport= $data->solrport;
+    }
+    if ($data->solrport) {
+    	$formdata->solrport= $data->solrport;
 		set_config('solrport',$data->solrport,'tool_coursesearch');
-		
-	}
+       
+    }
 	if($data->solrpath)
 	{
 		$formdata->solrpath= $data->solrpath;
 		set_config('solrpath',$data->solrpath,'tool_coursesearch');
 	}
+       
                // call apropriate action	
-}
-$form->set_data($formdata);
+    }
+    $form->set_data($formdata);
 
 // Otherwise display the settings form. 
-echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('solrconfig', 'tool_coursesearch'));
+    echo $OUTPUT->header();
+    echo $OUTPUT->heading(get_string('solrconfig', 'tool_coursesearch'));
 
-$info = format_text(get_string('coursesearchintro', 'tool_coursesearch'), FORMAT_MARKDOWN);
-echo $OUTPUT->box($info);
+    $info = format_text(get_string('coursesearchintro', 'tool_coursesearch'), FORMAT_MARKDOWN);
+    echo $OUTPUT->box($info);
 
 //$form->display();
-$renderer = $PAGE->get_renderer('tool_coursesearch');
-echo $renderer->moodleform(new coursesearch_settings_form());
+    $renderer = $PAGE->get_renderer('tool_coursesearch');
+    echo $renderer->moodleform(new coursesearch_settings_form());
     //print_r($form->get_data());
-echo $OUTPUT->footer();
+    echo $OUTPUT->footer();

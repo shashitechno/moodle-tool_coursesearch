@@ -44,3 +44,4 @@ $string['loadcontent'] = 'Load Content';
 $string['optimize'] = 'Optimize Index';
 $string['delete']= 'Delete All';
 $string['savesettings']= 'Save Settings';
+

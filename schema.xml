@@ -315,7 +315,7 @@
    <!-- The teaser can be used when a better snippet is not available -->
    <copyField source="body" dest="teaser" maxChars="300"/>
   
-
+    <field name="visibility" type="sint" indexed="true" stored="true" />
 	<!-- This field is used to build the spellchecker index -->
    <field name="spell" type="textSpell" indexed="true" stored="true" multiValued="true"/>
     <field name="startdate" type="date" indexed="true" stored="true"/>

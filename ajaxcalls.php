@@ -229,6 +229,7 @@
 	  	$doc->setField( 'summary', $course_info->summary );
 	  	$doc->setField( 'shortname', $course_info->shortname );
 	  	$doc->setField( 'date', tool_coursesearch_format_date($course_info->startdate) );
+	  	$doc->setField('visibility', $course_info->visible);
 	  	return $doc;
 	  }
 	  /**
@@ -272,8 +273,3 @@
 	  		echo $e->getMessage();
 	  	}
 	  }
-	  
-		/*
-	 * Search functions
-	*/
-	// need to included in Clean-Theme.

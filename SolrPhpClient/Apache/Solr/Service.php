@@ -363,7 +363,7 @@ class Apache_Solr_Service
 		{
 			throw new Apache_Solr_HttpTransportException($solrResponse);
 		}
-
+          
 		return $solrResponse;
 	}
 
