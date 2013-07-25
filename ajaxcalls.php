@@ -27,7 +27,7 @@
 	require_once("SolrPhpClient/Apache/Solr/Service.php");
 	require_once("lib/Basic-solr-functions.class.inc.php");
 
-	//require_sesskey();
+	require_sesskey();
 
 	$action = optional_param('action','ping', PARAM_STRINGID);
 
