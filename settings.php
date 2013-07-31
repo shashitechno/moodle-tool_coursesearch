@@ -13,8 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /**
  * 
  *
@@ -23,7 +21,6 @@
  * @copyright  2013 Shashikant Vaishnav  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die;
-
-$ADMIN->add('courses', new admin_externalpage('toolcoursesearch', get_string('pluginname', 'tool_coursesearch'), "$CFG->wwwroot/$CFG->admin/tool/coursesearch/index.php",'moodle/site:config'));
+$ADMIN->add('courses', new admin_externalpage('toolcoursesearch', get_string('pluginname', 'tool_coursesearch'),
+ "$CFG->wwwroot/$CFG->admin/tool/coursesearch/index.php", 'moodle/site:config'));

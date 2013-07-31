@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Defines the renderer for the Advance Course Search helper plugin.
  *
@@ -21,9 +20,7 @@
  * @copyright  2013 Shashikant Vaishnav
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
-
 /**
  * Renderer for the Advance Course Search
  *
@@ -31,20 +28,17 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2013 Shashikant Vaishnav
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class tool_coursesearch_renderer extends plugin_renderer_base {
-
+class tool_coursesearch_renderer extends plugin_renderer_base
+{
     /**
      * Render the index page.
      * @param string $detected information about what sort of site was detected.
      * @param array $actions list of actions to show on this page.
      * @return string html to output.
      */
-    
-    public function test()
-    {
-        $this->page->requires->js_init_call('M.tool_coursesearch.init'); 
+    public function test() {
+        $this->page->requires->js_init_call('M.tool_coursesearch.init');
     }
-    
     /**
      * Helper method dealing with the fact we can not just fetch the output of moodleforms
      *
@@ -52,7 +46,7 @@ class tool_coursesearch_renderer extends plugin_renderer_base {
      * @return string HTML
      */
     public function moodleform(moodleform $mform) {
-        $this->page->requires->js_init_call('M.tool_coursesearch.init'); 
+        $this->page->requires->js_init_call('M.tool_coursesearch.init');
         $this->page->requires->js_init_call('M.tool_coursesearch.loadcontent');
         $this->page->requires->js_init_call('M.tool_coursesearch.deleteAll');
         $this->page->requires->js_init_call('M.tool_coursesearch.optimize');
@@ -61,8 +55,6 @@ class tool_coursesearch_renderer extends plugin_renderer_base {
         $mform->display();
         $o = ob_get_contents();
         ob_end_clean();
-
         return $o;
     }
-
 }

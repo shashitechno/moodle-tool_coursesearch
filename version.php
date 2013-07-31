@@ -13,8 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /**
  * 
  *
@@ -23,9 +21,8 @@
  * @copyright  2013 Shashikant Vaishnav  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013060100; // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2013051400; // Requires this Moodle version
-$plugin->component = 'tool_coursesearch'; // Full name of the plugin (used for diagnostics)
+$plugin->version   = 2013060100; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires  = 2013051400; // Requires this Moodle version.
+$plugin->component = 'tool_coursesearch'; // Full name of the plugin (used for diagnostics).
