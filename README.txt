@@ -37,7 +37,7 @@ Step 2:-  ==== Installing Admin tool that manage Solr configuration and indexing
 
 Step 3:-  ==== Installing Solr & placing the plugin Schema ===
 
-Download the latest Solr 3.6.2 release from:
+Download the latest Solr 4.4.0 release from:
 http://lucene.apache.org/solr/
 
 Unpack the tarball somewhere not visible to the web (not in your apache docroot
@@ -45,17 +45,17 @@ and not inside of your drupal directory).
 
 The Solr download comes with an example application that you can use for
 testing, development, and even for smaller production sites. This
-application is found at apache-solr-3.6.2/example.
+application is found at apache-solr-4.4.0/example.
 
-Move apache-solr-3.6.2/example/solr/conf/schema.xml and rename it to
+Move apache-solr-4.4.0/example/solr/collection1/conf/schema.xml and rename it to
 something like schema.bak. Then move the schema.xml that comes 
 with moodle course search admin tool plugin to take its place.
 
-Similarly, move apache-solr-3.6.2/example/solr/conf/solrconfig.xml and rename
+Similarly, move apache-solr-4.4.0/example/solr/collection1/conf/solrconfig.xml and rename
 it like solrconfig.bak. Then move the solrconfig.xml that comes with the
 moodle course search admin tool plugin to take its place.
 
-Finally, move apache-solr-3.6.2/example/solr/conf/protwords.txt and rename
+Finally, move apache-solr-4.4.0/example/solr/collection1/conf/protwords.txt and rename
 it like protwords.bak. Then move the protwords.txt that comes with the
 moodle course search admin tool plugin  to take its place.
 
@@ -70,7 +70,7 @@ stopwords.txt
 synonyms.txt
 
 Now start the solr application by opening a shell, changing directory to
-apache-solr-3.6.2/example, and executing the command java -jar start.jar
+apache-solr-4.4.0/example, and executing the command java -jar start.jar
 
 Test that your solr server is now available by visiting
 http://localhost:8983/solr/admin/

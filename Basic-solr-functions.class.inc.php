@@ -140,11 +140,11 @@ public function deleteById( $doc_id ) {
         echo $e->getMessage();
     }
 }
-public function extract($url,$array)
+public function extract($url,$array,$docs=null)
 {
     try
     {
-        $this->_solr->extract($url,$array);
+        $this->_solr->extract($url,$array,$docs);
     }
     catch(Exception $e){
         echo $e->getMessage();

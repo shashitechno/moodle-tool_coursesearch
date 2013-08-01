@@ -45,6 +45,18 @@ if ($data = $form->get_data()) {
         $formdata->solrpath = $data->solrpath;
         set_config('solrpath', $data->solrpath, 'tool_coursesearch');
     }
+    if (isset($data->enablespellcheck)) {
+        $formdata->enablespellcheck = $data->enablespellcheck;
+        set_config('enablespellcheck', $data->enablespellcheck, 'tool_coursesearch');
+    }
+    if (isset($data->overviewindexing)) {
+        $formdata->overviewindexing = $data->overviewindexing;
+        set_config('overviewindexing', $data->overviewindexing, 'tool_coursesearch');
+    }
+    if (isset($data->summaryindexing)) {
+        $formdata->summaryindexing = $data->summaryindexing;
+        set_config('summaryindexing', $data->summaryindexing, 'tool_coursesearch');
+    }
 }
 $form->set_data($formdata);
 // Otherwise display the settings form.

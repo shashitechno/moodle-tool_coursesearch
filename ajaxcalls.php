@@ -197,12 +197,26 @@ function tool_coursesearch_get_courses($courseid) {
 function tool_coursesearch_build_document($options, $courseinfo) {
     global $DB, $CFG;
     $doc = new Apache_Solr_Document();
-    $doc->setField('id', $courseinfo->id);
+    $doc->setField( 'id', uniqid($courseinfo->id) );
+    $doc->setField('courseid', $courseinfo->id);
     $doc->setField('fullname', $courseinfo->fullname);
     $doc->setField('summary', $courseinfo->summary);
     $doc->setField('shortname', $courseinfo->shortname);
     $doc->setField('date', tool_coursesearch_format_date($courseinfo->startdate));
     $doc->setField('visibility', $courseinfo->visible);
+    $files=tool_coursesearch_overviewURL($courseinfo->id);
+	  
+	if (get_config('tool_coursesearch','overviewindexing')) {
+		 $solr = new Solr_basic();
+		if ($solr->connect($options, true)) {
+	  foreach ($files as $file) {
+	  					 $url = "{$CFG->wwwroot}/pluginfile.php/{$file->get_contextid()}/course/overviewfiles";
+                         $filename = rawurlencode($file->get_filename());
+                         $fileurl = $url.$file->get_filepath().$filename;
+                         $solr->extract($fileurl,array('literal.id'=>uniqid($courseinfo->id),'literal.filename'=>$filename,'literal.courseid'=>$courseinfo->id));
+                     }
+		}
+	}
     return $doc;
 }
 /**
@@ -243,3 +257,16 @@ function tool_coursesearch_solr_course($options, $documents, $commit = true, $op
         echo $e->getMessage();
     }
 }
+  function tool_coursesearch_overviewURL($courseid) {
+    $context = context_course::instance((int)$courseid);
+	$fs = get_file_storage();
+	$files = $fs->get_area_files($context->id, 'course', 'overviewfiles', false, 'filename', false);
+    return $files;
+   }
+	
+  function tool_coursesearch_summaryURL($courseid) {
+    $context = context_course::instance((int)$courseid);
+	$fs = get_file_storage();
+	$files = $fs->get_area_files($context->id, 'course', 'summary', false, 'filename', false);
+    return $files;
+	}

@@ -57,6 +57,11 @@ class coursesearch_settings_form extends moodleform
         $mform->addElement('button', 'solr-btn-deleteall', get_string('delete', 'tool_coursesearch'));
         $mform->addElement('header', 'coursesearch', get_string('options', 'tool_coursesearch'));
         $mform->addElement('advcheckbox', 'enablespellcheck', get_string('enablespellcheck', 'tool_coursesearch'));
+        $mform->addElement('advcheckbox', 'overviewindexing', get_string('overviewindexing', 'tool_coursesearch'));
+        $mform->addElement('advcheckbox', 'summaryindexing', get_string('summaryindexing', 'tool_coursesearch'));
+        $mform->setType('enablespellcheck', PARAM_BOOL);
+        $mform->setType('overviewindexing', PARAM_BOOL);
+        $mform->setType('summaryindexing', PARAM_BOOL);
         $mform->setType('enablespellcheck', PARAM_BOOL);
         $this->add_action_buttons(false, get_string('savesettings', 'tool_coursesearch'));
     }
