@@ -41,7 +41,7 @@ Download the latest Solr 4.4.0 release from:
 http://lucene.apache.org/solr/
 
 Unpack the tarball somewhere not visible to the web (not in your apache docroot
-and not inside of your drupal directory).
+and not inside of your moodle directory).
 
 The Solr download comes with an example application that you can use for
 testing, development, and even for smaller production sites. This
