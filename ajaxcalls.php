@@ -183,8 +183,8 @@ function tool_coursesearch_load_all($options, $prev) {
 function tool_coursesearch_get_courses($courseid) {
     global $DB, $CFG;
     $courses = $DB->get_record('course', array(
-        'id' => $courseid
-    ));
+        'id' => $courseid,
+    ), 'id,idnumber,fullname,shortname,summary,startdate,visible');
     return $courses;
 }
 /**
@@ -198,6 +198,7 @@ function tool_coursesearch_build_document($options, $courseinfo) {
     global $DB, $CFG;
     $doc = new Apache_Solr_Document();
     $doc->setField( 'id', uniqid($courseinfo->id) );
+    $doc->setField( 'idnumber',$courseinfo->idnumber);
     $doc->setField('courseid', $courseinfo->id);
     $doc->setField('fullname', $courseinfo->fullname);
     $doc->setField('summary', $courseinfo->summary);

@@ -105,6 +105,7 @@
   
    <field name="filename" type="text" indexed="true" stored="true"/>
       <field name="courseid" type="text" indexed="true" stored="true"/>
+	   <field name="idnumber" type="text" indexed="true" stored="true"/>
 	<!-- This field is used to build the spellchecker index -->
    <field name="spell" type="textSpell" indexed="true" stored="true" multiValued="true"/>
   
