@@ -22,26 +22,26 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 $string['searchlabel']           = 'Course Search:';
-$string['coursesearchintro']     = 'Advanced Search plugin replaces the default Moodle Course search with powerfull Solr search.';
-$string['pluginname']            = 'Advance Course Search';
-$string['solrheading']           = 'Apache Solr Configuration';
+$string['coursesearchintro']     = 'Advanced Course Search plugin replaces the default Moodle Course search with powerfull Solr search.';
+$string['pluginname']            = 'Advance course search';
+$string['solrheading']           = 'Apache solr configuration';
 $string['coursesearchsettings']  = 'Course Search settings';
-$string['defaulttext']           = 'Enter your Search Query Here:';
+$string['defaulttext']           = 'Enter your Search query here:';
 $string['settings']              = 'Course Search settings';
 $string['solrhost']              = 'Solr Host';
 $string['solrport']              = 'Solr Port';
 $string['solrpath']              = 'Solr Path';
-$string['solrconfig']            = 'Configure your Search results';
-$string['enablespellcheck']      = 'Enable Spellchecking';
-$string['enablespellcheck_help'] = 'Enable Spellchecking';
+$string['solrconfig']            = 'Advance course search settings';
+$string['enablespellcheck']      = 'Enable spellchecker & suggestions';
+$string['enablespellcheck_help'] = 'Enable spellchecker and get word suggestions. Also known as the "Did you mean ... ?" feature.';
 $string['options']               = 'Options';
 $string['actions']               = 'Actions';
 $string['pingstatus']            = 'Check Solr instance settings';
-$string['loadcontent']           = 'Load Content';
-$string['optimize']              = 'Optimize Index';
-$string['delete']                = 'Delete All';
-$string['savesettings']          = 'Save Settings';
-$string['overviewindexing']      = 'Index Course Overview Files ?';
-$string['summaryindexing']       = 'Index Course Summary Files ?';
-
-
+$string['loadcontent']           = 'Load content';
+$string['optimize']              = 'Optimize index';
+$string['delete']                = 'Delete all';
+$string['savesettings']          = 'Save settings';
+$string['overviewindexing']      = 'Index course overview files ';
+$string['summaryindexing']       = 'Index course summary files ';
+$string['overviewindexing_help']      = 'Index course overview files and search into those filenames and their content.';
+$string['summaryindexing_help']       = 'Index course summary files and search into those filenames';
