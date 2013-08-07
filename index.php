@@ -64,9 +64,9 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('solrconfig', 'tool_coursesearch'));
 $info = format_text(get_string('coursesearchintro', 'tool_coursesearch'), FORMAT_MARKDOWN);
 echo $OUTPUT->box($info);
-   if (data_submitted()) {
-echo $OUTPUT->notification(get_string('changessaved', 'tool_coursesearch'),'notifysuccess');
-  }
+if (data_submitted()) {
+    echo $OUTPUT->notification(get_string('changessaved', 'tool_coursesearch'), 'notifysuccess');
+}
 $renderer = $PAGE->get_renderer('tool_coursesearch');
 echo $renderer->moodleform(new coursesearch_settings_form());
 echo $OUTPUT->footer();

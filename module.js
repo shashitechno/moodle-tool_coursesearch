@@ -41,7 +41,7 @@ M.tool_coursesearch = {
         loadcontent: function (Y) {
             Y.one('#id_solr-btn-loadcontent').once('click', function (e) {
                 Y.one('#id_solr-btn-loadcontent').insert("<span id='solr-loadcontent-status'>&nbsp;<img src='pix/ajax-circle.gif'></span>", 'after');
-                M.tool_coursesearch.doIndex(1);
+                M.tool_coursesearch.doIndex(0);
             });
         },
         doIndex: function (prev) {

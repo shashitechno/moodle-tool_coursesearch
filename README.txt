@@ -77,7 +77,9 @@ http://localhost:8983/solr/admin/
 
 Step 4:- Testing With ping to Solr(Checking Config parameters of Solr)
 
-1. Advance Course can be found under :- Administration->course->Advance Course search(URL:- http://127.0.0.1/MoodleInstalltionURL/admin/tool/coursesearch)
+1. Advance Course can be found under :-
+
+Administration->course->Advance Course search(URL:- http://127.0.0.1/MoodleInstalltionURL/admin/tool/coursesearch)
 
 2. You running under localhost than fill:-
 
@@ -96,4 +98,4 @@ Enjoy the Search by going on page (http://127.0.0.1/MoodleInstallationURL/course
 
 The plugin is tested properly. But its under development. Please mail me if you found any issue. @Shashikantvaishnaw@gmail.com
 
-Thanks :) 
+Thanks :)

@@ -24,7 +24,7 @@
  */
 require_once(dirname(__FILE__) . '/../../../config.php');
 require_once("SolrPhpClient/Apache/Solr/Service.php");
-require_once("Basic-solr-functions.class.inc.php");
+require_once("Solr.php");
 require_sesskey();
 $action = optional_param('action', 'ping', PARAM_STRINGID);
 // Check the action and behave accrodingly.
@@ -39,7 +39,7 @@ switch ($action) {
         tool_coursesearch_optimize();
         break;
     case 'deleteall':
-        tool_coursesearch_deleteAll();
+        tool_coursesearch_deleteall();
         break;
     case 'search':
         tool_coursesearch_search();
@@ -48,7 +48,7 @@ switch ($action) {
 function tool_coursesearch_ping() {
     $options = tool_coursesearch_get_options();
     $arr     = array();
-    $solr    = new Solr_basic();
+    $solr    = new tool_coursesearch_solrlib();
     if ($solr->connect($options, true)) {
         $arr['status'] = 'ok';
     } else {
@@ -58,24 +58,24 @@ function tool_coursesearch_ping() {
     exit();
 }
 function tool_coursesearch_index() {
-    $prev = optional_param('prev', 1, PARAM_TEXT);
+    $prev = optional_param('prev', 0, PARAM_TEXT);
     tool_coursesearch_load_all(tool_coursesearch_params(), $prev);
     exit();
 }
-function tool_coursesearch_deleteAll() {
+function tool_coursesearch_deleteall() {
     $options = tool_coursesearch_params();
     $arr     = array();
-    $solr    = new Solr_basic();
+    $solr    = new tool_coursesearch_solrlib();
     if ($solr->connect($options, true)) {
-        if ($solr->deleteAll()) {
+        if ($solr->deleteall()) {
             $arr['status'] = 'ok';
         } else {
             $arr['status'] = 'error';
         }
     } else {
         $arr['status']  = 'error';
-        $arr['code']    = $solr->getLastErrorCode();
-        $arr['message'] = $solr->getLastErrorMessage();
+        $arr['code']    = $solr->get_error_code();
+        $arr['message'] = $solr->get_error_message();
     }
     print(json_encode($arr));
     exit();
@@ -83,7 +83,7 @@ function tool_coursesearch_deleteAll() {
 function tool_coursesearch_optimize() {
     $options = tool_coursesearch_params();
     $arr     = array();
-    $solr    = new Solr_basic();
+    $solr    = new tool_coursesearch_solrlib();
     if ($solr->connect($options, true)) {
         if ($solr->optimize()) {
             $arr['status'] = 'ok';
@@ -92,8 +92,8 @@ function tool_coursesearch_optimize() {
         }
     } else {
         $arr['status']  = 'error';
-        $arr['code']    = $solr->getLastErrorCode();
-        $arr['message'] = $solr->getLastErrorMessage();
+        $arr['code']    = $solr->get_error_code();
+        $arr['message'] = $solr->get_error_message();
     }
     print(json_encode($arr));
     exit();
@@ -137,25 +137,24 @@ function tool_coursesearch_load_all($options, $prev) {
     $found       = false;
     $end         = false;
     $percent     = 0;
-    $sql         = 'SELECT id FROM mdl_course';
+    $sql         = 'SELECT id FROM mdl_course ORDER BY id';
     $courses     = $DB->get_records_sql($sql);
+    $courses     = array_values($courses);
     $coursecount = count($courses);
-    for ($idx = 1; $idx <= $coursecount; $idx++) {
+    for ($idx = 0; $idx < $coursecount; $idx++) {
         $courseid = $courses[$idx]->id;
         $last     = $courseid;
-        $percent  = (floatval($idx) / floatval($coursecount)) * 100;
+        $percent  = (floatval($idx) / floatval($coursecount - 1)) * 100;
         if ($prev && !$found) {
             if ($courseid === $prev) {
                 $found = true;
             }
             continue;
         }
-        if ($idx === $coursecount) {
+        if ($idx === $coursecount - 1) {
             $end = true;
         }
         $documents[] = tool_coursesearch_build_document($options, tool_coursesearch_get_courses($courseid));
-        $richtypes[] = array();
-        $context     = context_course::instance($courseid);
         $cnt++;
         if ($cnt == $batchsize) {
             tool_coursesearch_solr_course($options, $documents, false, false);
@@ -183,7 +182,7 @@ function tool_coursesearch_load_all($options, $prev) {
 function tool_coursesearch_get_courses($courseid) {
     global $DB, $CFG;
     $courses = $DB->get_record('course', array(
-        'id' => $courseid,
+        'id' => $courseid
     ), 'id,idnumber,fullname,shortname,summary,startdate,visible');
     return $courses;
 }
@@ -194,30 +193,39 @@ function tool_coursesearch_get_courses($courseid) {
  * @param object $course_info having the other attributes about the particular course
  * @return object 
  */
+/* One course may have multiple attachments so we need use a random unique id
+unique id that is based on current macro time. */
 function tool_coursesearch_build_document($options, $courseinfo) {
     global $DB, $CFG;
     $doc = new Apache_Solr_Document();
-    $doc->setField( 'id', uniqid($courseinfo->id) );
-    $doc->setField( 'idnumber',$courseinfo->idnumber);
+    $doc->setField('id', uniqid($courseinfo->id));
+    $doc->setField('idnumber', $courseinfo->idnumber);
     $doc->setField('courseid', $courseinfo->id);
     $doc->setField('fullname', $courseinfo->fullname);
     $doc->setField('summary', $courseinfo->summary);
     $doc->setField('shortname', $courseinfo->shortname);
     $doc->setField('date', tool_coursesearch_format_date($courseinfo->startdate));
     $doc->setField('visibility', $courseinfo->visible);
-    $files=tool_coursesearch_overviewURL($courseinfo->id);
-	  
-	if (get_config('tool_coursesearch','overviewindexing')) {
-		 $solr = new Solr_basic();
-		if ($solr->connect($options, true)) {
-	  foreach ($files as $file) {
-	  					 $url = "{$CFG->wwwroot}/pluginfile.php/{$file->get_contextid()}/course/overviewfiles";
-                         $filename = rawurlencode($file->get_filename());
-                         $fileurl = $url.$file->get_filepath().$filename;
-                         $solr->extract($fileurl,array('literal.id'=>uniqid($courseinfo->id),'literal.filename'=>$filename,'literal.courseid'=>$courseinfo->id));
-                     }
-		}
-	}
+    $files = tool_coursesearch_overviewurl($courseinfo->id);
+    if (get_config('tool_coursesearch', 'overviewindexing')) {
+        $solr = new tool_coursesearch_solrlib();
+        if ($solr->connect($options, true)) {
+            foreach ($files as $file) {
+                $url      = "{$CFG->wwwroot}/pluginfile.php/{$file->get_contextid()}/course/overviewfiles";
+                $filename = rawurlencode($file->get_filename());
+                $fileurl  = $url . $file->get_filepath() . $filename;
+                $solr->extract($fileurl, array(
+                    'literal.id' => uniqid($courseinfo->id),
+                    'literal.filename' => $filename,
+                    'literal.courseid' => $courseinfo->id,
+                    'literal.fullname' => $courseinfo->fullname,
+                    'literal.summary' => $courseinfo->summary,
+                    'literal.shortname' => $courseinfo->shortname,
+                    'literal.visibility' => $courseinfo->visible
+                ));
+            }
+        }
+    }
     return $doc;
 }
 /**
@@ -242,10 +250,10 @@ function tool_coursesearch_format_date($thedate) {
  */
 function tool_coursesearch_solr_course($options, $documents, $commit = true, $optimize = false) {
     try {
-        $solr = new Solr_basic();
+        $solr = new tool_coursesearch_solrlib();
         if ($solr->connect($options, true)) {
             if ($documents) {
-                $solr->addDocuments($documents);
+                $solr->adddocuments($documents);
             }
             if ($commit) {
                 $solr->commit();
@@ -258,16 +266,31 @@ function tool_coursesearch_solr_course($options, $documents, $commit = true, $op
         echo $e->getMessage();
     }
 }
-  function tool_coursesearch_overviewURL($courseid) {
-    $context = context_course::instance((int)$courseid);
-	$fs = get_file_storage();
-	$files = $fs->get_area_files($context->id, 'course', 'overviewfiles', false, 'filename', false);
+/**
+ * Return files array of all the overview files
+ *
+ * @param int courseid 
+ * @return Array 
+ */
+function tool_coursesearch_overviewurl($courseid) {
+    $context = context_course::instance($courseid);
+    $fs      = get_file_storage();
+    $files   = $fs->get_area_files($context->id, 'course', 'overviewfiles', false, 'filename', false);
     return $files;
-   }
-	
-  function tool_coursesearch_summaryURL($courseid) {
-    $context = context_course::instance((int)$courseid);
-	$fs = get_file_storage();
-	$files = $fs->get_area_files($context->id, 'course', 'summary', false, 'filename', false);
-    return $files;
-	}
+}
+/**
+ * Return filename @string of summary file.
+ *
+ * @param int courseid 
+ * @return string filename 
+ */
+function tool_coursesearch_summaryfilename($courseid) {
+    $context  = context_course::instance((int) $courseid);
+    $fs       = get_file_storage();
+    $files    = $fs->get_area_files($context->id, 'course', 'summary', false, 'filename', false);
+    $filename = '';
+    foreach ($files as $file) {
+        $filename = $file->get_filename();
+    }
+    return $filename; // TODO Its doesn't looks relevent to add irrelevent file names. is it really ?.
+}

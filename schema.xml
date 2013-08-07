@@ -105,7 +105,7 @@
   
    <field name="filename" type="text" indexed="true" stored="true"/>
       <field name="courseid" type="text" indexed="true" stored="true"/>
-	   <field name="idnumber" type="text" indexed="true" stored="true"/>
+	        <field name="idnumber" type="text" indexed="true" stored="true"/>
 	<!-- This field is used to build the spellchecker index -->
    <field name="spell" type="textSpell" indexed="true" stored="true" multiValued="true"/>
   
@@ -116,6 +116,7 @@
    <copyField source="shortname" dest="spell"/>
    <copyField source="filename" dest="spell"/>
 <field name="content" type="text" indexed="true" stored="true" multiValued="true"/>
+<field name="visibility" type="sint" indexed="false" stored="true"/>
 
 	 <field name="title" type="text" indexed="true"
           stored="true" required="false" multiValued="false"

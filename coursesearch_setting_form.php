@@ -40,13 +40,13 @@ class coursesearch_settings_form extends moodleform
         $mform->addElement('header', 'course', get_string('solrheading', 'tool_coursesearch'));
         $mform->addElement('text', 'solrhost', get_string('solrhost', 'tool_coursesearch'));
         $mform->setType('solrhost', PARAM_HOST);
-        $mform->setDefault('solrhost',get_config('tool_coursesearch','solrhost'));
+        $mform->setDefault('solrhost', get_config('tool_coursesearch', 'solrhost'));
         $mform->addElement('text', 'solrport', get_string('solrport', 'tool_coursesearch'));
         $mform->setType('solrport', PARAM_INT);
-        $mform->setDefault('solrport',get_config('tool_coursesearch','solrport'));
+        $mform->setDefault('solrport', get_config('tool_coursesearch', 'solrport'));
         $mform->addElement('text', 'solrpath', get_string('solrpath', 'tool_coursesearch'));
         $mform->setType('solrpath', PARAM_ALPHANUMEXT);
-        $mform->setDefault('solrpath',get_config('tool_coursesearch','solrpath'));
+        $mform->setDefault('solrpath', get_config('tool_coursesearch', 'solrpath'));
         $mform->addRule('solrhost', get_string('required'), 'required', null);
         $mform->addRule('solrport', get_string('required'), 'required', null);
         $mform->addRule('solrpath', get_string('required'), 'required', null);
@@ -60,11 +60,14 @@ class coursesearch_settings_form extends moodleform
         $mform->addElement('advcheckbox', 'overviewindexing', get_string('overviewindexing', 'tool_coursesearch'));
         $mform->addElement('advcheckbox', 'summaryindexing', get_string('summaryindexing', 'tool_coursesearch'));
         $mform->setType('enablespellcheck', PARAM_BOOL);
-         $mform->addHelpButton('enablespellcheck', 'enablespellcheck', 'tool_coursesearch');
+        $mform->setDefault('enablespellcheck', get_config('tool_coursesearch', 'enablespellcheck'));
+        $mform->addHelpButton('enablespellcheck', 'enablespellcheck', 'tool_coursesearch');
         $mform->setType('overviewindexing', PARAM_BOOL);
-         $mform->addHelpButton('overviewindexing', 'overviewindexing', 'tool_coursesearch');
+        $mform->setDefault('overviewindexing', get_config('tool_coursesearch', 'overviewindexing'));
+        $mform->addHelpButton('overviewindexing', 'overviewindexing', 'tool_coursesearch');
         $mform->setType('summaryindexing', PARAM_BOOL);
-         $mform->addHelpButton('summaryindexing', 'summaryindexing', 'tool_coursesearch');
+        $mform->setDefault('summaryindexing', get_config('tool_coursesearch', 'summaryindexing'));
+        $mform->addHelpButton('summaryindexing', 'summaryindexing', 'tool_coursesearch');
         $this->add_action_buttons(false, get_string('savesettings', 'tool_coursesearch'));
     }
 }
