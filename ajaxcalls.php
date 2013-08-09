@@ -41,9 +41,6 @@ switch ($action) {
     case 'deleteall':
         tool_coursesearch_deleteall();
         break;
-    case 'search':
-        tool_coursesearch_search();
-        break;
 }
 function tool_coursesearch_ping() {
     $options = tool_coursesearch_get_options();
