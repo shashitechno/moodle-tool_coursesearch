@@ -129,7 +129,7 @@ function tool_coursesearch_load_all($options, $prev) {
     global $DB, $CFG;
     $documents   = array();
     $cnt         = 0;
-    $batchsize   = 100;
+    $batchsize   = 10;
     $last        = "";
     $found       = false;
     $end         = false;
