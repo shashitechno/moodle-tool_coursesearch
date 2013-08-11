@@ -29,8 +29,11 @@ $string['coursesearchsettings']  = 'Course Search settings';
 $string['defaulttext']           = 'Enter your Search query here:';
 $string['settings']              = 'Course Search settings';
 $string['solrhost']              = 'Solr Host';
+$string['solrhost_help']         = 'Host name of your Solr server, e.g. localhost or example.com.';
 $string['solrport']              = 'Solr Port';
+$string['solrport_help']         = 'Port on which the Solr server listens. The Jetty example server is 8983, while Tomcat is 8080 by default.';
 $string['solrpath']              = 'Solr Path';
+$string['solrpath_help']         = 'Path that identifies the Solr request handler to be used.';
 $string['solrconfig']            = 'Advance course search settings';
 $string['enablespellcheck']      = 'Enable spellchecker & suggestions';
 $string['enablespellcheck_help'] = 'Enable spellchecker and get word suggestions. Also known as the "Did you mean ... ?" feature.';
@@ -46,3 +49,4 @@ $string['summaryindexing']       = 'Index course summary files ';
 $string['overviewindexing_help']      = 'Index course overview files and search into those filenames and their content.';
 $string['summaryindexing_help']       = 'Index course summary files and search into those filenames';
 $string['changessaved']               =  "Configuration saved !";
+
