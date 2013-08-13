@@ -26,7 +26,7 @@ require_once(dirname(__FILE__) . '/../../../config.php');
 require_once("SolrPhpClient/Apache/Solr/Service.php");
 require_once("Solr.php");
 require_sesskey();
-$action = optional_param('action', 'ping', PARAM_STRINGID);
+$action = optional_param('action', 'none', PARAM_STRINGID);
 // Check the action and behave accrodingly.
 switch ($action) {
     case 'ping':
@@ -41,6 +41,8 @@ switch ($action) {
     case 'deleteall':
         tool_coursesearch_deleteall();
         break;
+    case 'none':
+    	break;        // Do nothing.
 }
 function tool_coursesearch_ping() {
     $options = tool_coursesearch_get_options();
