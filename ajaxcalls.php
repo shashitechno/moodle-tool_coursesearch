@@ -24,7 +24,7 @@
  */
 require_once(dirname(__FILE__) . '/../../../config.php');
 require_once("SolrPhpClient/Apache/Solr/Service.php");
-require_once("Solr.php");
+require_once("solrlib.php");
 require_sesskey();
 $action = optional_param('action', 'none', PARAM_STRINGID);
 // Check the action and behave accrodingly.
