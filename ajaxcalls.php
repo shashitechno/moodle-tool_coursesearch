@@ -42,7 +42,7 @@ switch ($action) {
         tool_coursesearch_deleteall();
         break;
     case 'none':
-    	break;        // Do nothing.
+        break; // Do nothing.
 }
 function tool_coursesearch_ping() {
     $options = tool_coursesearch_get_options();

@@ -113,6 +113,17 @@ class tool_coursesearch_solrlib
             return false;
         }
     }
+    public function adddocument($document) {
+        try {
+            $this->solr->addDocument($document);
+            $this->solr->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->errorcode    = $e->getCode();
+            $this->errormessage = $e->getMessage();
+            return false;
+        }
+    }
     public function deleteall($optimize = false) {
         try {
             $this->solr->deleteByQuery('*:*');
