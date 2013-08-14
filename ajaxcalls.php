@@ -73,8 +73,8 @@ function tool_coursesearch_deleteall() {
         }
     } else {
         $arr['status']  = 'error';
-        $arr['code']    = $solr->get_error_code();
-        $arr['message'] = $solr->get_error_message();
+        $arr['code']    = $solr->get_errorcode();
+        $arr['message'] = $solr->get_errormessage();
     }
     print(json_encode($arr));
     exit();
@@ -91,8 +91,8 @@ function tool_coursesearch_optimize() {
         }
     } else {
         $arr['status']  = 'error';
-        $arr['code']    = $solr->get_error_code();
-        $arr['message'] = $solr->get_error_message();
+        $arr['code']    = $solr->get_errorcode();
+        $arr['message'] = $solr->get_errormessage();
     }
     print(json_encode($arr));
     exit();
