@@ -21,6 +21,9 @@
  * @copyright  2013 Shashikant Vaishnav  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+ 
+ defined('MOODLE_INTERNAL') || die;
+ 
 class tool_coursesearch_solrlib
 {
     private $solr = null;
