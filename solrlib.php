@@ -93,9 +93,9 @@ class tool_coursesearch_solrlib
             return false;
         }
     }
-    public function deletebyquery($obj) {
+    public function deletebyquery($courseid) {
         try {
-            $this->solr->deleteByQuery('courseid:'.$obj->id);
+            $this->solr->deleteByQuery('courseid:'.$courseid);
             $this->solr->commit();
             return true;
         } catch (Exception $e) {
