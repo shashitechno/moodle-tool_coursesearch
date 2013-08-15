@@ -269,7 +269,7 @@ function tool_coursesearch_solr_course($options, $documents, $commit = true, $op
  * Return files array of all the overview files
  *
  * @param int courseid 
- * @return Array 
+ * @return array 
  */
 function tool_coursesearch_overviewurl($courseid) {
     $context = context_course::instance($courseid);
@@ -292,4 +292,56 @@ function tool_coursesearch_summaryfilename($courseid) {
         $filename = $file->get_filename();
     }
     return $filename; // TODO Its doesn't looks relevent to add irrelevent file names. is it really ?.
+}
+/**
+ * Return boolean
+ *
+ * Course create handler trigger when a course is created.
+ * @param coursedata object
+ */
+function tool_coursesearch_course_created_handler($obj) {
+    try {
+        $options = tool_coursesearch_get_options();
+        $doc     = tool_coursesearch_build_document($options, $obj);
+        $solr    = new tool_coursesearch_solrlib();
+        if ($solr->connect($options, true)) {
+            if ($doc) {
+                $solr->addDocument($doc);
+                return true;
+            }
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+/**
+ * Return boolean
+ *
+ * Course event handler trigger when a course is deleted.
+ * @param coursedata object
+ */
+function tool_coursesearch_course_deleted_handler($obj) {
+    try {
+        $solr = new tool_coursesearch_solrlib();
+        if ($solr->connect(tool_coursesearch_params(), true)) {
+            $solr->deletebyquery($obj->id);
+            $solr->commit();
+        }
+        return true;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+/**
+ * Return boolean
+ *
+ * Course event handler. trigger when a course is updated.
+ * @param coursedata object
+ */
+function tool_coursesearch_course_updated_handler($obj) {
+    if (tool_coursesearch_course_deleted_handler($obj) && tool_coursesearch_course_created_handler($obj)) {
+        return true;
+    }
 }
