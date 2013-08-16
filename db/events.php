@@ -21,21 +21,23 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 /* List of handlers */
+require_once(dirname(__FILE__) . '/../../../../config.php');
+global $CFG;
 $handlers = array(
     'course_created' => array(
-        'handlerfile' => '/admin/tool/coursesearch/ajaxcalls.php',
+        'handlerfile' => '/'.$CFG->admin.'/tool/coursesearch/ajaxcalls.php',
         'handlerfunction' => 'tool_coursesearch_course_created_handler',
         'schedule' => 'instant',
         'internal' => 1
     ),
     'course_updated' => array(
-        'handlerfile' => '/admin/tool/coursesearch/ajaxcalls.php',
+        'handlerfile' => '/'.$CFG->admin.'/tool/coursesearch/ajaxcalls.php',
         'handlerfunction' => 'tool_coursesearch_course_updated_handler',
         'schedule' => 'instant',
         'internal' => 1
     ),
     'course_deleted' => array(
-        'handlerfile' => '/admin/tool/coursesearch/ajaxcalls.php',
+        'handlerfile' => '/'.$CFG->admin.'/tool/coursesearch/ajaxcalls.php',
         'handlerfunction' => 'tool_coursesearch_course_deleted_handler',
         'schedule' => 'instant',
         'internal' => 1
