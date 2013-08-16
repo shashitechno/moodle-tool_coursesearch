@@ -68,5 +68,5 @@ if (data_submitted()) {
     echo $OUTPUT->notification(get_string('changessaved', 'tool_coursesearch'), 'notifysuccess');
 }
 $renderer = $PAGE->get_renderer('tool_coursesearch');
-echo $renderer->moodleform(new coursesearch_settings_form());
+echo $renderer->moodleform($form);
 echo $OUTPUT->footer();
