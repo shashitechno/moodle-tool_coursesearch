@@ -23,7 +23,7 @@
 /* List of handlers */
 $handlers = array(
     'course_created' => array(
-        'handlerfile' => '\admin\tool\coursesearch\ajaxcalls.php',
+        'handlerfile' => '/admin/tool/coursesearch/ajaxcalls.php',
         'handlerfunction' => 'tool_coursesearch_course_created_handler',
         'schedule' => 'instant',
         'internal' => 1
