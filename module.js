@@ -1,6 +1,12 @@
 M.tool_coursesearch = {
 
     init: function (Y) {
+        Y.use(M.tool_coursesearch.ping);
+        Y.use(M.tool_coursesearch.deleteAll);
+        Y.use(M.tool_coursesearch.loadcontent);
+        Y.use(M.tool_coursesearch.optimize);
+    },
+    ping: function (Y) {
 
         Y.one('#id_solr-btn-ping').once('click', function (e) {
 
@@ -36,7 +42,6 @@ M.tool_coursesearch = {
     },
     clearSaveStatus: function (id) {
         Y.one(id).setHTML('');
-        Y.use(M.tool_coursesearch.init);
     },
     loadcontent: function (Y) {
         Y.one('#id_solr-btn-loadcontent').once('click', function (e) {

@@ -47,9 +47,6 @@ class tool_coursesearch_renderer extends plugin_renderer_base
      */
     public function moodleform(moodleform $mform) {
         $this->page->requires->js_init_call('M.tool_coursesearch.init');
-        $this->page->requires->js_init_call('M.tool_coursesearch.loadcontent');
-        $this->page->requires->js_init_call('M.tool_coursesearch.deleteAll');
-        $this->page->requires->js_init_call('M.tool_coursesearch.optimize');
         $o = '';
         ob_start();
         $mform->display();
