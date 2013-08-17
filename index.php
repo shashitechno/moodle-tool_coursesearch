@@ -27,6 +27,7 @@ require_once($CFG->libdir . '/moodlelib.php');
 require_once('coursesearch_setting_form.php');
 require_login();
 admin_externalpage_setup('toolcoursesearch');
+$PAGE->requires->js_init_call('M.tool_coursesearch.init');
 // Create the form.
 $form     = new coursesearch_settings_form();
 $formdata = new stdClass();
@@ -67,6 +68,5 @@ echo $OUTPUT->box($info);
 if (data_submitted()) {
     echo $OUTPUT->notification(get_string('changessaved', 'tool_coursesearch'), 'notifysuccess');
 }
-$renderer = $PAGE->get_renderer('tool_coursesearch');
-echo $renderer->moodleform($form);
+echo $form->display();
 echo $OUTPUT->footer();
