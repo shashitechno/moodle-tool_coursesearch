@@ -5,6 +5,28 @@ M.tool_coursesearch = {
         Y.use(M.tool_coursesearch.deleteAll);
         Y.use(M.tool_coursesearch.loadcontent);
         Y.use(M.tool_coursesearch.optimize);
+
+    },
+    auto: function (Y) {
+
+        YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', 'datasource', function (Y) {
+
+            Y.one('body').addClass('yui3-skin-sam');
+            Y.one('input#coursesearchbox').plug(Y.Plugin.AutoComplete, {
+                resultHighlighter: 'phraseMatch',
+                resultFilters: 'phraseMatch',
+                minQueryLength: 1,
+                resultListLocator: function (response) {
+                    if (!response || !response.terms || !response.terms.spell || !response.terms.spell.length) {
+                        return [];
+                    }
+
+                    return response.terms.spell;
+                },
+                source: 'http://localhost:8983/solr/terms?wt=json&q={query}&json.wrf={callback}&terms.fl=spell&terms.prefix={query}&terms.lower={query}',
+
+            });
+        });
     },
     ping: function (Y) {
 
