@@ -12,19 +12,19 @@ M.tool_coursesearch = {
         YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', 'datasource', function (Y) {
 
             Y.one('body').addClass('yui3-skin-sam');
+
             Y.one('input#coursesearchbox').plug(Y.Plugin.AutoComplete, {
                 resultHighlighter: 'phraseMatch',
                 resultFilters: 'phraseMatch',
-                minQueryLength: 1,
+                minQueryLength: 0,
                 resultListLocator: function (response) {
-                    if (!response || !response.terms || !response.terms.spell || !response.terms.spell.length) {
+                    if (!response || !response.spellcheck || !response.spellcheck.suggestions || !response.spellcheck.suggestions.length) {
                         return [];
                     }
 
-                    return response.terms.spell;
+                    return response.spellcheck.suggestions[1].suggestion;
                 },
-                source: 'http://localhost:8983/solr/terms?wt=json&q={query}&json.wrf={callback}&terms.fl=spell&terms.prefix={query}&terms.lower={query}',
-
+                source: 'http://localhost:8983/solr/select?wt=json&q={query}&json.wrf={callback}',
             });
         });
     },
