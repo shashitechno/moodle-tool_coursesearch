@@ -141,6 +141,9 @@ function tool_coursesearch_load_all($options, $prev) {
     $courses     = array_values($courses);
     $coursecount = count($courses);
     for ($idx = 0; $idx < $coursecount; $idx++) {
+        if( !ini_get('safe_mode') ){ 
+            set_time_limit(0);       // Increase time limit.
+        } 
         $courseid = $courses[$idx]->id;
         $last     = $courseid;
         $percent  = (floatval($idx) / floatval($coursecount - 1)) * 100;
