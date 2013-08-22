@@ -24,7 +24,7 @@ M.tool_coursesearch = {
 
                     return response.spellcheck.suggestions[1].suggestion;
                 },
-                source: 'http://localhost:8983/solr/select?wt=json&q={query}&json.wrf={callback}',
+                source: 'http://localhost:8983/solr/suggest?wt=json&q={query}&json.wrf={callback}',
             });
         });
     },
