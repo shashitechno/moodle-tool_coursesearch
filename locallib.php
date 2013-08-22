@@ -262,7 +262,7 @@ class tool_coursesearch_locallib
         }
         return $filename; // TODO Its doesn't looks relevent to add irrelevent file names. is it really ?.
     }
-    public public function tool_coursesearch_query($qry, $offset, $count, $fq, $sortby, $options) {
+    public function tool_coursesearch_query($qry, $offset, $count, $fq, $sortby, $options) {
         global $CFG;
         $response = null;
         $options  = $this->tool_coursesearch_solr_params();
@@ -304,7 +304,7 @@ class tool_coursesearch_locallib
      * @param array $array offset & count 
      * @return Apache_solr_response object
      */
-    public public function tool_coursesearch_search($array) {
+    public function tool_coursesearch_search($array) {
         $config = $this->tool_coursesearch_solr_params();
         $qry    = stripslashes(optional_param('search', '', PARAM_TEXT));
         $offset = isset($array['offset']) ? $array['offset'] : 0;
@@ -354,7 +354,7 @@ class tool_coursesearch_locallib
      * @param object Apache_solr_response
      * @return int count
      */
-    public public function tool_coursesearch_coursecount($response) {
+    public function tool_coursesearch_coursecount($response) {
         $count = $response->ngroups;
         foreach ($response->groups as $doclists => $doclist) {
             foreach ($doclist->doclist->docs as $doc) {
@@ -382,7 +382,7 @@ class tool_coursesearch_locallib
      * @param void
      * @return int errorcode
      */
-    public public function tool_coursesearch_pluginchecks() {
+    public function tool_coursesearch_pluginchecks() {
         $errorcode = 0;
         global $CFG;
         $obj = new tool_coursesearch_solrlib();
