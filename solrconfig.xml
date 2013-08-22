@@ -952,7 +952,7 @@
 
        <!-- Highlighting defaults -->
        <str name="hl">on</str>
-       <str name="hl.fl">content features title name</str>
+       <str name="hl.fl">*</str>
        <str name="hl.encoder">html</str>
        <str name="hl.simple.pre">&lt;b&gt;</str>
        <str name="hl.simple.post">&lt;/b&gt;</str>
@@ -1243,7 +1243,7 @@
      -->
   <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
 
-    <str name="queryAnalyzerFieldType">textSpell</str>
+    <str name="queryAnalyzerFieldType">phrase_suggest</str>
 
     <!-- Multiple "Spell Checkers" can be declared and used by this
          component
@@ -1337,7 +1337,7 @@
     -->
   <requestHandler name="/select" class="solr.SearchHandler" startup="lazy">
     <lst name="defaults">
-      <str name="df">text</str>
+      <str name="df">phrase_suggest</str>
       <!-- Solr will use suggestions from both the 'default' spellchecker
            and from the 'wordbreak' spellchecker and combine them.
            collations (re-written queries) can include a combination of
@@ -1363,6 +1363,44 @@
 
        http://wiki.apache.org/solr/TermVectorComponent
     -->
+	
+	<searchComponent class="solr.SpellCheckComponent" name="suggest">
+    <lst name="spellchecker">
+      <str name="name">suggest</str>
+      <str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
+     <str name="lookupImpl">org.apache.solr.spelling.suggest.fst.WFSTLookupFactory</str>
+	  <!-- Suggester properties -->
+      <bool name="exactMatchFirst">true</bool>
+   
+      <!-- Alternatives to lookupImpl: 
+           org.apache.solr.spelling.suggest.fst.FSTLookup   [finite state automaton]
+           org.apache.solr.spelling.suggest.fst.WFSTLookupFactory [weighted finite state automaton]
+           org.apache.solr.spelling.suggest.jaspell.JaspellLookup [default, jaspell-based]
+           org.apache.solr.spelling.suggest.tst.TSTLookup   [ternary trees]
+      -->
+      <str name="field">spell</str>  <!-- the indexed field to derive suggestions from -->
+      <float name="threshold">0.005</float>
+      <str name="buildOnCommit">true</str>
+	   <str name="queryAnalyzerFieldType">phrase_suggest</str>
+<!--
+      <str name="sourceLocation">american-english</str>
+-->
+    </lst>
+  </searchComponent>
+  <requestHandler class="org.apache.solr.handler.component.SearchHandler" name="/suggest">
+    <lst name="defaults">
+      <str name="spellcheck">true</str>
+      <str name="spellcheck.dictionary">suggest</str>
+      <str name="spellcheck.onlyMorePopular">true</str>
+      <str name="spellcheck.count">5</str>
+      <str name="spellcheck.collate">true</str>
+    </lst>
+    <arr name="components">
+      <str>suggest</str>
+    </arr>
+  </requestHandler>
+	
+	
   <searchComponent name="tvComponent" class="solr.TermVectorComponent"/>
 
   <!-- A request handler for demonstrating the term vector component

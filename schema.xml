@@ -13,7 +13,16 @@
         <fieldType name="sdouble" class="solr.SortableDoubleField" sortMissingLast="true" omitNorms="true"/>
         <fieldType name="date" class="solr.DateField" sortMissingLast="true" omitNorms="true"/>
         <fieldType name="random" class="solr.RandomSortField" indexed="true" />
-
+        <fieldtype name="phrase_suggest" class="solr.TextField">
+	  <analyzer>
+	    <tokenizer class="solr.KeywordTokenizerFactory"/>
+	    <filter class="solr.PatternReplaceFilterFactory"
+	            pattern="([^\p{L}\p{M}\p{N}\p{Cs}]*[\p{L}\p{M}\p{N}\p{Cs}\_]+:)|([^\p{L}\p{M}\p{N}\p{Cs}])+"
+	            replacement=" " replace="all"/>
+	    <filter class="solr.LowerCaseFilterFactory"/>
+	    <filter class="solr.TrimFilterFactory"/>
+	  </analyzer>
+	</fieldtype>
         <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
             <analyzer>
                 <tokenizer class="solr.WhitespaceTokenizerFactory"/>
@@ -107,7 +116,7 @@
       <field name="courseid" type="text" indexed="true" stored="true"/>
 	        <field name="idnumber" type="text" indexed="true" stored="true"/>
 	<!-- This field is used to build the spellchecker index -->
-   <field name="spell" type="textSpell" indexed="true" stored="true" multiValued="true"/>
+   <field name="spell" type="phrase_suggest" indexed="true" stored="true" multiValued="true"/>
   
   <!-- copyField commands copy one field to another at the time a document
         is added to the index.  It's used either to index the same field differently,
@@ -149,6 +158,6 @@
  <defaultSearchField>fullname</defaultSearchField>
 
  <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
- <solrQueryParser defaultOperator="OR"/>
+ <solrQueryParser defaultOperator="AND"/>
 
 </schema>
