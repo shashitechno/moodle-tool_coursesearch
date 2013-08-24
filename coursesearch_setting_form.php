@@ -47,7 +47,7 @@ class coursesearch_settings_form extends moodleform
         $mform->addHelpButton('solrport', 'solrport', 'tool_coursesearch');
         $mform->setDefault('solrport', get_config('tool_coursesearch', 'solrport'));
         $mform->addElement('text', 'solrpath', get_string('solrpath', 'tool_coursesearch'));
-        $mform->setType('solrpath', PARAM_ALPHANUMEXT);
+        $mform->setType('solrpath', PARAM_PATH);
         $mform->addHelpButton('solrpath', 'solrpath', 'tool_coursesearch');
         $mform->setDefault('solrpath', get_config('tool_coursesearch', 'solrpath'));
         $mform->addRule('solrhost', get_string('required'), 'required', null);
