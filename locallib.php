@@ -23,7 +23,7 @@
 require_once(dirname(__FILE__) . '/../../../config.php');
 require_once("SolrPhpClient/Apache/Solr/Service.php");
 require_once("solrlib.php");
-require_once($CFG->dirroot . '/' . $CFG->admin . "/tool/coursesearch/SolrPhpClient/Apache/Solr/HttpTransport/Curl.php");
+require_once("$CFG->dirroot/$CFG->admin/tool/coursesearch/SolrPhpClient/Apache/Solr/HttpTransport/Curl.php");
 class tool_coursesearch_locallib
 {
     public function tool_coursesearch_ping($options) {
