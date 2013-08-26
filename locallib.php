@@ -269,7 +269,7 @@ class tool_coursesearch_locallib
         $solr     = new tool_coursesearch_solrlib();
         if ($solr->connect($options, true)) {
             $params            = array();
-            $params['defType'] = 'dismax';
+            $params['defType'] = 'edismax';
             $params['qf']      = 'idnumber^10 fullname^8 shortname^5 summary^3.5 startdate^1.5 content filename';
             if (empty($qry) || $qry == '*' || $qry == '*:*') {
                 $params['q.alt'] = "*:*";
