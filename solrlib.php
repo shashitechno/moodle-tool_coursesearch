@@ -156,7 +156,4 @@ class tool_coursesearch_solrlib
             echo $e->getMessage();
         }
     }
-    public function search($qry, $offset, $count, $params) {
-        return $this->solr->search($qry, $offset, $count, $params);
-    }
 }
