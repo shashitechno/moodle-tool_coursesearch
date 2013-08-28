@@ -22,5 +22,5 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die;
-$ADMIN->add('courses', new admin_externalpage('toolcoursesearch', get_string('pluginname', 'tool_coursesearch'),
+$ADMIN->add('courses', new admin_externalpage('toolcoursesearch', get_string('pluginsettings', 'tool_coursesearch'),
  "$CFG->wwwroot/$CFG->admin/tool/coursesearch/index.php", 'moodle/site:config'));

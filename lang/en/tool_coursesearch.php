@@ -48,5 +48,5 @@ $string['overviewindexing']      = 'Index course overview files ';
 $string['summaryindexing']       = 'Index course summary files ';
 $string['overviewindexing_help']      = 'Index course overview files and search into those filenames and their content.';
 $string['summaryindexing_help']       = 'Index course summary files and search into those filenames';
-$string['changessaved']               =  "Configuration saved !";
-
+$string['changessaved']               = 'Configuration saved !';
+$string['pluginsettings']             = 'Course search settings';
