@@ -341,7 +341,7 @@ class tool_coursesearch_locallib
                     $out['qtime'] = sprintf(("%.3f"), $header->QTime / 1000);
                 }
                 if ($didyoumean != false) {
-                    echo html_writer::tag('h3', 'Did You Mean ' . html_writer::link(
+                    echo html_writer::tag('h3', get_string('didyoumean', 'tool_coursesearch') . html_writer::link(
                     new moodle_url('search.php?search=' . rawurlencode($didyoumean)), $didyoumean) . '?');
                 }
             }

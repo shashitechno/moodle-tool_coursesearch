@@ -37,6 +37,7 @@ $string['solrpath_help']         = 'Path that identifies the Solr request handle
 $string['solrconfig']            = 'Advance course search settings';
 $string['enablespellcheck']      = 'Enable spellchecker & suggestions';
 $string['enablespellcheck_help'] = 'Enable spellchecker and get word suggestions. Also known as the "Did you mean ... ?" feature.';
+$string['didyoumean']            = 'Did you mean&nbsp;';
 $string['options']               = 'Options';
 $string['actions']               = 'Actions';
 $string['pingstatus']            = 'Check Solr instance settings';
