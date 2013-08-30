@@ -123,7 +123,7 @@
         or to add multiple fields to the same field for easier/faster searching.  -->
    <copyField source="fullname" dest="spell"/>
    <copyField source="shortname" dest="spell"/>
-   <copyField source="filename" dest="spell"/>
+   <copyField source="idnumber" dest="spell"/>
 <field name="content" type="text" indexed="true" stored="true" multiValued="true"/>
 <field name="visibility" type="sint" indexed="false" stored="true"/>
 
