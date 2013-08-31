@@ -172,7 +172,7 @@ class tool_coursesearch_locallib
         $doc->setField('fullname', $courseinfo->fullname);
         $doc->setField('summary', $courseinfo->summary);
         $doc->setField('shortname', $courseinfo->shortname);
-        $doc->setField('date', $this->tool_coursesearch_format_date($courseinfo->startdate));
+        $doc->setField('startdate', $this->tool_coursesearch_format_date($courseinfo->startdate));
         $doc->setField('visibility', $courseinfo->visible);
         $files = $this->tool_coursesearch_overviewurl($courseinfo->id);
         if (get_config('tool_coursesearch', 'overviewindexing')) {
@@ -189,6 +189,7 @@ class tool_coursesearch_locallib
                         'literal.fullname' => $courseinfo->fullname,
                         'literal.summary' => $courseinfo->summary,
                         'literal.shortname' => $courseinfo->shortname,
+                        'literal.stardate' => $this->tool_coursesearch_format_date($courseinfo->startdate),
                         'literal.visibility' => $courseinfo->visible
                     ));
                 }
@@ -203,9 +204,7 @@ class tool_coursesearch_locallib
      * @return string 
      */
     public function tool_coursesearch_format_date($thedate) {
-        $datere  = '/(\d{4}-\d{2}-\d{2})\s(\d{2}:\d{2}:\d{2})/';
-        $replstr = '${1}T${2}Z';
-        return preg_replace($datere, $replstr, $thedate);
+        return gmdate("Y-m-d\TH:i:s\Z", $thedate);
     }
     /**
      * Return void
@@ -275,7 +274,6 @@ class tool_coursesearch_locallib
                 $params['q.alt'] = "*:*";
                 $qry             = '';
             }
-            $params['pf']                         = 'fullname^15 shortname^10';
             $params['fq']                         = $fq;
             $params['fl']                         = '*,score';
             $params['hl']                         = 'on';
@@ -313,7 +311,7 @@ class tool_coursesearch_locallib
         $sort   = (isset($_GET['sort'])) ? $_GET['sort'] : '';
         $order  = (isset($_GET['order'])) ? $_GET['order'] : '';
         $isdym  = (isset($_GET['isdym'])) ? $_GET['isdym'] : 0;
-        $fqitms = '';
+        $fqitms = $fq;
         $out    = array();
         if (!$qry) {
             $qry = '';
