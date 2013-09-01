@@ -204,7 +204,7 @@ class tool_coursesearch_locallib
      * @return string 
      */
     public function tool_coursesearch_format_date($thedate) {
-        return gmdate("Y-m-d\TH:i:s\Z", $thedate);
+        return gmdate("Y-m-d\TH:i:s\Z", $thedate);   // return timestamp in proper format.
     }
     /**
      * Return void
