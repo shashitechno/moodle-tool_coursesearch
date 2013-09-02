@@ -30,7 +30,7 @@ switch ($action) {
         $obj->tool_coursesearch_ping($arr = tool_coursesearch_get_options());
         break;
     case 'index':
-        $prev = optional_param('prev', 0, PARAM_TEXT);
+        $prev = optional_param('prev', 0, PARAM_INT);
         $obj->tool_coursesearch_index($prev);
         break;
     case 'optimize':
@@ -49,8 +49,8 @@ switch ($action) {
  */
 function tool_coursesearch_get_options() {
     $options              = array();
-    $options['solr_host'] = optional_param('host', 'localhost', PARAM_TEXT);
+    $options['solr_host'] = optional_param('host', 'localhost', PARAM_HOST);
     $options['solr_port'] = optional_param('port', 8983, PARAM_INT);
-    $options['solr_path'] = optional_param('path', '/solr', PARAM_TEXT);
+    $options['solr_path'] = optional_param('path', '/solr', PARAM_PATH);
     return $options;
 }
