@@ -119,7 +119,7 @@ class tool_coursesearch_locallib
                 }
                 continue;
             }
-            if ($idx === $coursecount - 2) {
+            if ($idx === $coursecount - 1) {
                 $end = true;
             }
             $documents[] = $this->tool_coursesearch_build_document($options, $this->tool_coursesearch_get_courses($courseid));
