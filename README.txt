@@ -1,4 +1,4 @@
-=== **Advanced Course Search** ===
+=== Advanced Course Search ===
 
 
 This plugin integrates moodle Course Search with the Apache Solr search platform. Solr search
@@ -10,12 +10,12 @@ The module comes with a schema.xml, solrconfig.xml, and protwords.txt file which
 must be used in your Solr installation.
 
 
-**Installation**
+ Installation
 ------------
 
 Prerequisite: Java 5 or higher (a.k.a. 1.5.x).  PHP 5.1.4 or higher.
 
-Step 1:-  ==== **Installing Cleantheme that renders the search results** ====
+Step 1:-  ==== Installing Cleantheme that renders the search results ====
 
 1. Download the cleantheme from here (https://github.com/shashirepo/moodle-theme_cleantheme) 
 
@@ -26,7 +26,7 @@ Step 1:-  ==== **Installing Cleantheme that renders the search results** ====
 	
 4. If not then navigate to Administration > Notifications.
 
-Step 2:-  ==== **Installing Admin tool that manage solr configuration and indexing.** ====
+Step 2:-  === Installing Admin tool that manage solr configuration and indexing. ===
 
 1. Download the admin tool from here (https://github.com/shashirepo/moodle-tool_coursesearch) 
 
@@ -37,7 +37,7 @@ Step 2:-  ==== **Installing Admin tool that manage solr configuration and indexi
 	
 4. If not then navigate to Administration > Notifications.
 
-Step 3:-  ==== **Installing Solr & placing the plugin Schema** ===
+Step 3:-  ==== Installing Solr & placing the plugin Schema ===
 
 Download the latest Solr 4.4.0 release from:
 http://lucene.apache.org/solr/
@@ -77,7 +77,7 @@ apache-solr-4.4.0/example, and executing the command java -jar start.jar
 Test that your solr server is now available by visiting
 http://localhost:8983/solr/admin/
 
-Step 4:- ** === Testing With ping to Solr === **
+Step 4:- === Testing With ping to Solr ===
 
 1. Advance Course can be found under :-
 
@@ -85,7 +85,7 @@ Administration->course->Advance Course search(URL:- http://127.0.0.1/MoodleInsta
 
 2. You running under localhost than fill:-
 
-Solr Host:- localhost
+Solr Host:- localhost or 127.0.0.1
 Solr Port:- 8983 (Default port for Solr )
 Solr path :- /solr (Configuration directory for solr)
 
