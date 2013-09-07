@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Transfer form
+ * Course search setting form
  *
  * @package    tool_coursesearch
  * @copyright  2013 Shashikant Vaishnav
@@ -62,6 +62,8 @@ class coursesearch_settings_form extends moodleform
         $mform->addElement('advcheckbox', 'enablespellcheck', get_string('enablespellcheck', 'tool_coursesearch'));
         $mform->addElement('advcheckbox', 'overviewindexing', get_string('overviewindexing', 'tool_coursesearch'));
         $mform->addElement('advcheckbox', 'summaryindexing', get_string('summaryindexing', 'tool_coursesearch'));
+        $mform->addElement('select', 'solrerrormessage', get_string('solrerrormessage', 'tool_coursesearch'), array(
+        get_string('showerrormessageyes', 'tool_coursesearch'), get_string('showerrormessageno', 'tool_coursesearch')));
         $mform->setType('enablespellcheck', PARAM_BOOL);
         $mform->setDefault('enablespellcheck', get_config('tool_coursesearch', 'enablespellcheck'));
         $mform->addHelpButton('enablespellcheck', 'enablespellcheck', 'tool_coursesearch');
@@ -71,6 +73,9 @@ class coursesearch_settings_form extends moodleform
         $mform->setType('summaryindexing', PARAM_BOOL);
         $mform->setDefault('summaryindexing', get_config('tool_coursesearch', 'summaryindexing'));
         $mform->addHelpButton('summaryindexing', 'summaryindexing', 'tool_coursesearch');
+        $mform->setType('solrerrormessage', PARAM_BOOL);
+        $mform->setDefault('solrerrormessage', get_config('tool_coursesearch', 'solrerrormessage'));
+        $mform->addHelpButton('solrerrormessage', 'solrerrormessage', 'tool_coursesearch');
         $this->add_action_buttons(false, get_string('savesettings', 'tool_coursesearch'));
     }
 }

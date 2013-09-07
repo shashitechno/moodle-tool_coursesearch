@@ -58,6 +58,10 @@ if ($data = $form->get_data()) {
         $formdata->summaryindexing = $data->summaryindexing;
         set_config('summaryindexing', $data->summaryindexing, 'tool_coursesearch');
     }
+    if (isset($data->solrerrormessage)) {
+        $formdata->solrerrormessage = $data->solrerrormessage;
+        set_config('solrerrormessage', $data->solrerrormessage, 'tool_coursesearch');
+    }
 }
 $form->set_data($formdata);
 // Otherwise display the settings form.
