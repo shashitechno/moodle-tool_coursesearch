@@ -7,13 +7,22 @@ M.tool_coursesearch = {
         Y.use(M.tool_coursesearch.optimize);
 
     },
+    sort: function (Y) {
+
+        Y.one('#id_sortmenu').on('change', function (e) {
+
+            document.getElementById("searchformui").submit();
+
+        });
+
+    },
     auto: function (Y) {
 
         YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', 'datasource', function (Y) {
 
             Y.one('body').addClass('yui3-skin-sam');
 
-            Y.one('input#coursesearchbox').plug(Y.Plugin.AutoComplete, {
+            Y.one('input#id_search').plug(Y.Plugin.AutoComplete, {
                 resultHighlighter: 'phraseMatch',
                 resultFilters: 'phraseMatch',
                 minQueryLength: 0,

@@ -60,3 +60,37 @@ $string['solrerrormessage_help'] = 'What to display if Apache Solr search is not
 $string['showerrormessageyes']   = 'Show error message: Yes';
 $string['showerrormessageno']    = 'Show error message: No';
 $string['emptyqueryfield']       = 'Query should not be empty !';
+$string['searchcourses']         = 'Search Courses:';
+$string['go']                    = 'Go';
+$string['searchfromtime']        = 'Starting from :';
+$string['searchfromtime_help']   = 'Filter your search results from the course start date. Select the approximate starting date range of your course.';
+$string['searchtilltime']        = 'Starting to :';
+$string['searchtilltime_help']   = 'Filter your search results from the course start date. Select the approximate starting date range of your course.';
+$string['filterresults']         = 'filter results';
+$string['searchurl']             = 'Course search settings';
+$string['sortby']                = 'Sort by:';
+$string['sortheading']           = 'sort results';
+$string['filtercheckbox']        = 'Keep the current filter';
+$string['filtercheckbox_help']   = 'Keep the current filter on while searching';
+$string['sortmenu']              = 'Sort results';
+$string['sortmenu_help']         = 'Sort results with different aspects';
+$string['pluginsettings']        = 'Course search settings';
+$string['coursesearchhelp']      = '
+<pre><b> 1. Autosuggestion with searchbox </b>:- Start typing with your  search keyword and you will have autocomplete suggestions. Suggestions fields are idnumber, course fullname, shortname.
+<br/><br/></pre>
+<pre><b> 2. Wildcard search </b>:- you can use wild cards(?,*) while searching for courses.
+Example :- Moodle* searches for all the courses starting from the word "moodle".
+<br/><br/></pre>
+<pre><b> 3. Proximity matching </b>:- you can search by words from courses that are within a specific distance away.
+Example :- Search for "foo bar" within 4 words from each other.
+"foo bar"~4
+<br/><br/></pre>
+<pre><b> 4. Keyword matching (searching within specific field) </b>:- you may limit your search within specific field by using solr keyword matching feature.
+Example:- Search for word "PHP" in fullname field and "object oriented" in summary field.
+fullname:"PHP" AND summary:"object oriented"
+<br/><br/> </pre>
+<pre><b> 5. Filtering results by startdate </b>:- you can filter your search results by selecting the approximate date  range of courses.
+<br/><br/> </pre>
+<pre><b> 6. Sorting results </b>:- By default results are sorted by relevance(score). you can sort results by relevance, startdate, shortname.
+<br/><br/></pre>
+<pre>for more help with plugin:- http://docs.moodle.org/25/en/Course_search</pre>';
