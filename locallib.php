@@ -109,7 +109,7 @@ class tool_coursesearch_locallib
         $courses     = array_values($courses);
         $coursecount = count($courses);
         for ($idx = 1; $idx < $coursecount; $idx++) {
-               set_time_limit(0);
+            set_time_limit(0);
             $courseid = $courses[$idx]->id;
             $last     = $courseid;
             $percent  = (floatval($idx) / floatval($coursecount - 1)) * 100;
@@ -204,7 +204,7 @@ class tool_coursesearch_locallib
      * @return string 
      */
     public function tool_coursesearch_format_date($thedate) {
-        return gmdate("Y-m-d\TH:i:s\Z", $thedate);   // return timestamp in proper format.
+        return gmdate("Y-m-d\TH:i:s\Z", $thedate); // Return timestamp in proper format.
     }
     /**
      * Return void
@@ -340,7 +340,7 @@ class tool_coursesearch_locallib
                 }
                 if ($didyoumean != false) {
                     echo html_writer::tag('h3', get_string('didyoumean', 'tool_coursesearch') . html_writer::link(
-                    new moodle_url('search.php?search=' . rawurlencode($didyoumean)), $didyoumean) . '?');
+                        new moodle_url('search.php?search=' . rawurlencode($didyoumean)), $didyoumean) . '?');
                 }
             }
             return $response;
@@ -370,6 +370,20 @@ class tool_coursesearch_locallib
             }
         }
         return $count;
+    }
+    /**
+     * Return the array of solr configuration
+     * @return array of solr configuration values 
+     */
+    public function tool_coursesearch_autosuggestparams() {
+        $config    = array();
+        $protocol  = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https://' : 'http://';
+        $config[0] = $protocol;
+        $config[1] = get_config('tool_coursesearch', 'solrport');
+        $path      = get_config('tool_coursesearch', 'solrpath');
+        stripos('/', $path) === true ? $path : $path = '/' . $path;
+        $config[2] = $path;
+        return $config;
     }
     /**
      * Returns the error code either 0, 02 or 12.

@@ -16,7 +16,7 @@ M.tool_coursesearch = {
         });
 
     },
-    auto: function (Y) {
+    auto: function (Y,rule,port,path) {
 
         YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', 'datasource', function (Y) {
 
@@ -33,7 +33,7 @@ M.tool_coursesearch = {
 
                     return response.spellcheck.suggestions[1].suggestion;
                 },
-                source: 'http://localhost:8983/solr/suggest?wt=json&q={query}&json.wrf={callback}',
+                source: rule+window.location.hostname+':'+port+path+'/suggest?wt=json&q={query}&json.wrf={callback}',
             });
         });
     },
