@@ -30,7 +30,7 @@ switch ($action) {
         $obj->tool_coursesearch_ping($arr = tool_coursesearch_get_options());
         break;
     case 'index':
-        $prev = optional_param('prev', 0, PARAM_INT);
+        $prev = optional_param('prev', 0, PARAM_TEXT);
         $obj->tool_coursesearch_index($prev);
         break;
     case 'optimize':
