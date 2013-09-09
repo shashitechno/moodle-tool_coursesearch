@@ -124,7 +124,7 @@ M.tool_coursesearch = {
         }
     },
     deleteAll: function () {
-        Y.one('#id_solr-btn-deleteall').on('click', function (e) {
+        Y.one('#id_solr-btn-deleteall').once('click', function (e) {
             Y.one('#id_solr-btn-deleteall').insert('<span id=solr-deleteall-status>&nbsp;<img src="pix/ajax-circle.gif"></span>', 'after');
             Y.io('ajaxcalls.php?action=deleteall' + '&sesskey=' + M.cfg.sesskey, {
                 method: "GET",
