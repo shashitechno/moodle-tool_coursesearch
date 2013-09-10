@@ -189,7 +189,7 @@ class tool_coursesearch_locallib
                         'literal.fullname' => $courseinfo->fullname,
                         'literal.summary' => $courseinfo->summary,
                         'literal.shortname' => $courseinfo->shortname,
-                        'literal.stardate' => $this->tool_coursesearch_format_date($courseinfo->startdate),
+                        'literal.startdate' => $this->tool_coursesearch_format_date($courseinfo->startdate),
                         'literal.visibility' => $courseinfo->visible
                     ));
                 }
