@@ -303,16 +303,24 @@ class tool_coursesearch_locallib
      * @return Apache_solr_response object
      */
     public function tool_coursesearch_search($array) {
+        global $CFG;
         $config = $this->tool_coursesearch_solr_params();
         $qry    = stripslashes(optional_param('search', '', PARAM_TEXT));
         $offset = isset($array['offset']) ? $array['offset'] : 0;
         $count  = isset($array['limit']) ? $array['limit'] : 20; // TODO input from user how many results perpage.
-        $fq     = (isset($_GET['fq'])) ? $_GET['fq'] : '';
         $sort   = (isset($_GET['sort'])) ? $_GET['sort'] : '';
         $order  = (isset($_GET['order'])) ? $_GET['order'] : '';
         $isdym  = (isset($_GET['isdym'])) ? $_GET['isdym'] : 0;
-        $fqitms = $fq;
-        $out    = array();
+        require_once("$CFG->dirroot/$CFG->admin/tool/coursesearch/coursesearch_resultsui_form.php");
+        $mform = new coursesearch_resultsui_form();
+        if ($data = $mform->get_data()) {
+            if ($data->filtercheckbox === '0') {
+                $fq = $this->tool_coursesearch_filterbydate($data);
+            } else {
+                $fq = '';
+            }
+        }
+        $out = array();
         if (!$qry) {
             $qry = '';
         }
@@ -323,7 +331,7 @@ class tool_coursesearch_locallib
             $order  = '';
         }
         if ($qry) {
-            $results = self::tool_coursesearch_query($qry, $offset, $count, $fqitms, $sortby, $config);
+            $results = self::tool_coursesearch_query($qry, $offset, $count, $fq, $sortby, $config);
             if ($results) {
                 $response = $results->grouped->courseid;
                 $header   = $results->responseHeader;
@@ -405,6 +413,27 @@ class tool_coursesearch_locallib
             $errorcode .= 2;
         }
         return $errorcode;
+    }
+    /**
+     * gives the fq query string. Need to be passed to solr for range query.
+     *
+     * @param StdClass Object from moodleform
+     * @return String fq query.
+     */
+    public function tool_coursesearch_filterbydate($data) {
+        if (!empty($data->searchfromtime) or !empty($data->searchtilltime)) {
+            if (empty($data->searchfromtime)) {
+                $data->searchfromtime = '*';
+            } else {
+                $data->searchfromtime = gmdate('Y-m-d\TH:i:s\Z', $data->searchfromtime);
+            }
+            if (empty($data->searchtilltime)) {
+                $data->searchtilltime = '*';
+            } else {
+                $data->searchtilltime = gmdate('Y-m-d\TH:i:s\Z', $data->searchtilltime);
+            }
+            return 'startdate:[' . $data->searchfromtime . ' TO ' . $data->searchtilltime . ']';
+        }
     }
 }
 /**
