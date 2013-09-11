@@ -319,6 +319,8 @@ class tool_coursesearch_locallib
             } else {
                 $fq = '';
             }
+        } else {
+            $fq= '';
         }
         $out = array();
         if (!$qry) {
@@ -332,26 +334,7 @@ class tool_coursesearch_locallib
         }
         if ($qry) {
             $results = self::tool_coursesearch_query($qry, $offset, $count, $fq, $sortby, $config);
-            if ($results) {
-                $response = $results->grouped->courseid;
-                $header   = $results->responseHeader;
-                echo 'Query Time ' . $header->QTime / 1000 . ' Seconds';
-                if (isset($results->spellcheck->suggestions->collation)) {
-                    $didyoumean = $results->spellcheck->suggestions->collation->collationQuery;
-                } else {
-                    $didyoumean = false;
-                }
-                $out['qtime'] = false;
-                $outputinfo   = true;
-                if ($outputinfo) {
-                    $out['qtime'] = sprintf(("%.3f"), $header->QTime / 1000);
-                }
-                if ($didyoumean != false) {
-                    echo html_writer::tag('h3', get_string('didyoumean', 'tool_coursesearch') . html_writer::link(
-                        new moodle_url('search.php?search=' . rawurlencode($didyoumean)), $didyoumean) . '?');
-                }
-            }
-            return $response;
+            return $results;
         }
     }
     /**
