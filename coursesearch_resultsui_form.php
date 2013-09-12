@@ -45,7 +45,6 @@ class coursesearch_resultsui_form extends moodleform
         $mform->disabledIf('sortmenu', 'filtercheckbox', 'checked');
         $mform->addHelpButton('filtercheckbox', 'filtercheckbox', 'tool_coursesearch');
         $mform->addElement('header', 'filterresults', get_string('filterresults', 'tool_coursesearch'));
-        $mform->setExpanded('filterresults', true);
         $mform->addElement('date_time_selector', 'searchfromtime', get_string('searchfromtime', 'tool_coursesearch'), array(
             'optional' => true
         ));
