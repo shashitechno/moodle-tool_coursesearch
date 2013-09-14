@@ -75,7 +75,8 @@ $string['filtercheckbox_help']   = 'Disable all the filters';
 $string['sortmenu']              = 'Sort results';
 $string['sortmenu_help']         = 'Sort results with different aspects';
 $string['pluginsettings']        = 'Course search settings';
-$string['coursesearchhelp']      = '
+$string['advancecoursesearch']   = 'Advance Course search Help';
+$string['advancecoursesearch_help']      = '
 <pre><b> 1. Autosuggestion with searchbox </b>:- Start typing with your  search keyword and you will have autocomplete suggestions. Suggestions fields are idnumber, course fullname, shortname.
 <br/><br/></pre>
 <pre><b> 2. Wildcard search </b>:- you can use wild cards(?,*) while searching for courses.
@@ -92,5 +93,4 @@ fullname:"PHP" AND summary:"object oriented"
 <pre><b> 5. Filtering results by startdate </b>:- you can filter your search results by selecting the approximate date  range of courses.
 <br/><br/> </pre>
 <pre><b> 6. Sorting results </b>:- By default results are sorted by relevance(score). you can sort results by relevance, startdate, shortname.
-<br/><br/></pre>
-<pre>for more help with plugin:- http://docs.moodle.org/25/en/Course_search</pre>';
+<br/><br/></pre>';

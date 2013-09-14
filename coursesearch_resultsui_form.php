@@ -37,6 +37,7 @@ class coursesearch_resultsui_form extends moodleform
         $mform    = $this->_form;
         $instance = $this->_customdata;
         $mform->addElement('text', 'search', get_string('searchcourses', 'tool_coursesearch'));
+        $mform->addHelpButton('search', 'advancecoursesearch', 'tool_coursesearch');
         $mform->addRule('search', get_string('emptyqueryfield', 'tool_coursesearch'), 'required', null, 'client');
         $mform->setType('search', PARAM_TEXT);
         $mform->addElement('advcheckbox', 'filtercheckbox', '', 'Disable all filters');
