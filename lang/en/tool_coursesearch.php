@@ -53,8 +53,6 @@ $string['changessaved']          = 'Configuration saved !';
 $string['pluginsettings']        = 'Course search settings';
 $string['solrpingerror']         = 'Apache Solr: Your site was unable to contact the
                                     Apache Solr server. Search results will appear from core moodle search.';
-$string['admintoolerror']        = 'Admin tool is not installed ! Search results will appear from core moodle search';
-$string['dependencyerror']       = 'Neither admin tool is installed nor solr is configured. Please resolve those error. Search results will appear from core moodle search';
 $string['solrerrormessage']      = 'On failure';
 $string['solrerrormessage_help'] = 'What to display if Apache Solr search is not available.';
 $string['showerrormessageyes']   = 'Show error message: Yes';
