@@ -46,6 +46,7 @@ class coursesearch_resultsui_form extends moodleform
         $mform->disabledIf('sortmenu', 'filtercheckbox', 'checked');
         $mform->addHelpButton('filtercheckbox', 'filtercheckbox', 'tool_coursesearch');
         $mform->addElement('header', 'filterresults', get_string('filterresults', 'tool_coursesearch'));
+        $mform->setExpanded('filterresults', false);
         $mform->addElement('date_time_selector', 'searchfromtime', get_string('searchfromtime', 'tool_coursesearch'), array(
             'optional' => true
         ));
@@ -57,7 +58,7 @@ class coursesearch_resultsui_form extends moodleform
         $mform->setDefault('searchtilltime', 0);
         $mform->addHelpButton('searchtilltime', 'searchtilltime', 'tool_coursesearch');
         $mform->addElement('header', 'sortresults', get_string('sortheading', 'tool_coursesearch'));
-        $mform->setExpanded('sortresults', true);
+        $mform->setExpanded('sortresults', false);
         $mform->addElement('select', 'sortmenu', get_string('sortby', 'tool_coursesearch'), array(
             'score' => 'By relevance',
             'shortname' => 'By shortname',
