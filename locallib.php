@@ -377,25 +377,17 @@ class tool_coursesearch_locallib
         return $config;
     }
     /**
-     * Returns the error code either 0, 02 or 12.
-     * 0 Everything is okay 
-     * 1 Admin tool is not installed
-     * 02 Ping to solr failed.
-     * 12 Both issues 
+     * return true if ping to solr
+     * succeed else return false.
      * @param void
-     * @return int errorcode
+     * @return boolean true/false
      */
-    public function tool_coursesearch_pluginchecks() {
-        $errorcode = 0;
-        global $CFG;
+    public function tool_coursesearch_pingsolr() {
         $obj = new tool_coursesearch_solrlib();
-        if (!array_key_exists('coursesearch', get_plugin_list('tool'))) {
-            $errorcode = 1;
+        if ($obj->connect($this->tool_coursesearch_solr_params(), true)) {
+            return true;
         }
-        if (!$obj->connect($this->tool_coursesearch_solr_params(), true)) {
-            $errorcode .= 2;
-        }
-        return $errorcode;
+        return false;
     }
     /**
      * gives the fq query string. Need to be passed to solr for range query.
