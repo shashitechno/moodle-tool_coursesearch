@@ -17,6 +17,23 @@ Prerequisite: Java 5 or higher (a.k.a. 1.5.x).  PHP 5.1.4 or higher.
 
 Step 1:-  ==== Installing Cleantheme that renders the search results ====
 
+Here is two options either you may replace/copy your exisiting theme renderer with the one found in
+search_cleantheme OR you may install cleantheme.
+
+replacing /copying the rederer file to your theme.
+
+1. Copy renderer.php file from search_cleantheme replace it with your theme's renerer file.
+
+2. Standard moodle theme doesn't have any renderer file so you may simply copy this to your
+   theme directory.
+
+3. Rename renderer class name acording to your theme name.
+
+for example if you are using theme 'clean'.
+then rename the class names to 'theme_clean_core_renderer' & 'theme_clean_core_course_renderer'.
+
+OR you may either use search_cleantheme. This is also based on cleantheme.
+
 1. Download the cleantheme from here (https://github.com/shashirepo/moodle-theme_cleantheme) 
 
 2. Extract the theme folder. and put it under moodle installation theme directory.
