@@ -127,9 +127,6 @@
 <field name="content" type="text" indexed="true" stored="true" multiValued="true"/>
 <field name="visibility" type="sint" indexed="false" stored="true"/>
 
-	 <field name="title" type="text" indexed="true"
-          stored="true" required="false" multiValued="false"
-          omitNorms="false"/>
    <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
         will be used if the name matches any of the patterns.
         RESTRICTION: the glob-like pattern in the name attribute must have
