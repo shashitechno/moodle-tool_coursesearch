@@ -1,38 +1,41 @@
-=== Advanced Course Search ===
+=== Advanced Course Search(Solr integration with moodle course schema) ===
 
+ Introduction
+---------------
 
-This plugin integrates moodle Course Search with the Apache Solr search platform. Solr search
-can be used as a replacement for existing course search and boasts both extra
-features and better performance. Among the extra features is the ability 
-of being flexible, case-insensitive, works with non-latin languages, fast, and can sort results by relevance(score).
+The plugin is integration of moodle course search with the apache solr search platform.
+Solr search can be used as a replacement for existing course search and boasts both
+extra features and better performance. Among the extra features is the ability 
+of being flexible, case-insensitive, works with non-latin languages, fast, auto complete suggestions,
+facting and can sort results by relevance(score).
 
 The module comes with a schema.xml, solrconfig.xml, and protwords.txt file which
-must be used in your Solr installation.
+must be used in your solr installation.
 
 
  Installation
-------------
+---------------
 
-Prerequisite: Java 5 or higher (a.k.a. 1.5.x).  PHP 5.1.4 or higher.
+Prerequisite: Java 5 or higher (a.k.a. 1.5.x), PHP 5.1.4 or higher, moodle 2.5 or higher.
 
-Step 1:-  ==== Installing Cleantheme that renders the search results ====
+Step 1:-  ==== Installing cleantheme that renders the search results / Placing the renderer file ====
 
-Here is two options either you may replace/copy your exisiting theme renderer with the one found in
-search_cleantheme OR you may install cleantheme.
+Here is two options either you may replace/copy your existing theme renderer with the one found in
+search_cleantheme(https://github.com/shashirepo/moodle-theme_cleantheme). OR you may install cleantheme itself.
 
-replacing /copying the rederer file to your theme.
+replacing /copying the renderer file to your theme.
 
-1. Copy renderer.php file from search_cleantheme replace it with your theme's renerer file.
+1. Copy renderer.php file from search_cleantheme replace it with your theme's renderer file.
 
 2. Standard moodle theme doesn't have any renderer file so you may simply copy this to your
    theme directory.
 
-3. Rename renderer class name acording to your theme name.
+3. Rename renderer class name according to your theme name.
 
 for example if you are using theme 'clean'.
 then rename the class names to 'theme_clean_core_renderer' & 'theme_clean_core_course_renderer'.
 
-OR you may either use search_cleantheme. This is also based on cleantheme.
+OR you may either use search_cleantheme. This is also based on clean theme.
 
 1. Download the cleantheme from here (https://github.com/shashirepo/moodle-theme_cleantheme) 
 
@@ -43,13 +46,13 @@ OR you may either use search_cleantheme. This is also based on cleantheme.
 	
 4. If not then navigate to Administration > Notifications.
 
-Step 2:-  === Installing Admin tool that manage solr configuration and indexing. ===
+Step 2:-  === Installing admin tool that manage solr configuration & options to index courses. ===
 
-1. Download the admin tool from here (https://github.com/shashirepo/moodle-tool_coursesearch) 
+1. Download the admin tool from here. (https://github.com/shashirepo/moodle-tool_coursesearch) 
 
-2. Extract the Course Search folder. and put it under moodle installation /admin/tool directory.
+2. Extract the Course Search folder. Put it under moodle installation/admin/tool directory.
 
-3. If you are already logged in just refreshing the browser should trigger your Moodle
+3. It should be named coursesearch. If you are already logged in just refreshing the browser should trigger your Moodle
     site to begin the install 'Plugins Check'.
 	
 4. If not then navigate to Administration > Notifications.
@@ -94,27 +97,36 @@ apache-solr-4.4.0/example, and executing the command java -jar start.jar
 Test that your solr server is now available by visiting
 http://localhost:8983/solr/admin/
 
-Step 4:- === Testing With ping to Solr ===
+Step 4:- === Testing with ping to solr ===
 
 1. Advance Course can be found under :-
 
-Administration->course->Advance Course search(URL:- http://127.0.0.1/MoodleInstalltionURL/admin/tool/coursesearch)
+Administration->course->Course search settings(URL:- http://127.0.0.1/MoodleInstalltionURL/admin/tool/coursesearch)
 
-2. You running under localhost than fill:-
+2. Give the solr configuration options here:-
 
 Solr Host:- localhost or 127.0.0.1
 Solr Port:- 8983 (Default port for Solr )
 Solr path :- /solr (Configuration directory for solr)
 
-3. Click on "Check Solr instance Setting". if it Shows ping Successfully(with an success image). Now Click save changes.
+3. Click on "Check Solr instance Setting". if it Shows ping successful(with an success image). Now click save changes.
 
-4. Now Click on "Load Content" to index all the Courses. After Successful index it will come with an success image.
+4. Now click on "Index courses" to index all the courses. After successful indexing. It will come up with a success image.
 
-5. Click on "Optimize" to Optimize the existing Indexes. And improve solr performance.
+5. Click on "Optimize" to optimize the existing indexes And improve solr performance.
 
 
 Enjoy the Search by going on page (http://127.0.0.1/MoodleInstallationURL/course/search.php)
 
-The plugin is tested properly. But its under development. Please mail me if you found any issue. @Shashikantvaishnaw@gmail.com
+to configure navigation with the course search page goto Site administration -> Front page -> Front page settings.
 
-Thanks :)
+If you find any issue with plugin. You may either use tracker or github to report the bug(tracker.moodle.org/browse/CONTRIB-4335)
+
+Some usefull links :-
+
+General user documentation :- http://docs.moodle.org/25/en/Course_search
+Github wiki :- https://github.com/shashirepo/moodle-tool_coursesearch/wiki
+Tracker of the project :- http://tracker.moodle.org/browse/CONTRIB-4335
+Weekly reports :- http://shashitechno.wordpress.com/tag/moodle/
+
+Good luck, Thanks.
