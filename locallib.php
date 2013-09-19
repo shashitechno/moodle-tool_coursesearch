@@ -308,8 +308,8 @@ class tool_coursesearch_locallib
         $qry    = stripslashes(optional_param('search', '', PARAM_TEXT));
         $offset = isset($array['offset']) ? $array['offset'] : 0;
         $count  = isset($array['limit']) ? $array['limit'] : 20; // TODO input from user how many results perpage.
-        $sort   = (isset($_GET['sort'])) ? $_GET['sort'] : '';
-        $order  = (isset($_GET['order'])) ? $_GET['order'] : '';
+        $sort   = optional_param('sortmenu', 'score', PARAM_TEXT);
+        $order  = optional_param('order', 'desc', PARAM_TEXT);
         $isdym  = (isset($_GET['isdym'])) ? $_GET['isdym'] : 0;
         require_once("$CFG->dirroot/$CFG->admin/tool/coursesearch/coursesearch_resultsui_form.php");
         $mform = new coursesearch_resultsui_form();
