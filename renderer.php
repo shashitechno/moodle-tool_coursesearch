@@ -23,7 +23,7 @@
  */
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot . "/course/renderer.php");
-class tool_coursesearch_renderer extends plugin_renderer_base
+class tool_coursesearch_renderer extends core_course_renderer
 {
     /**   @override
      * Renders html to display a course search form
@@ -46,12 +46,10 @@ class tool_coursesearch_renderer extends plugin_renderer_base
                 ));
                 $mform->display();
             } else {
-                $courserenderer = $PAGE->get_renderer('core', 'course');
-                return $courserenderer->course_search_form();
+                return parent::course_search_form($value, $format);
             }
         } else {
-            $courserenderer = $PAGE->get_renderer('core', 'course');
-            return $courserenderer->course_search_form();
+            return parent::course_search_form($value, $format);
         }
     }
     /**
@@ -81,8 +79,7 @@ class tool_coursesearch_renderer extends plugin_renderer_base
             $courses                              = array();
             $class                                = 'course-search-result';
             $chelper                              = new coursecat_helper();
-            $courserenderer                       = $PAGE->get_renderer('core', 'course');
-            $chelper->set_show_courses($courserenderer->COURSECAT_SHOW_COURSES_EXPANDED_WITH_CAT)->set_courses_display_options(
+            $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_EXPANDED_WITH_CAT)->set_courses_display_options(
                 $displayoptions)->set_search_criteria($searchcriteria)->set_attributes(array(
                 'class' => $class
             ));
@@ -166,7 +163,7 @@ class tool_coursesearch_renderer extends plugin_renderer_base
         }
         if ($didyoumean != false) {
             echo html_writer::tag('h3', get_string('didyoumean', 'tool_coursesearch') . html_writer::link(
-                new moodle_url('search.php?search=' . rawurlencode($didyoumean)), $didyoumean) . '?');
+                new moodle_url('example.php?search=' . rawurlencode($didyoumean)), $didyoumean) . '?');
         }
         return $content;
     }
