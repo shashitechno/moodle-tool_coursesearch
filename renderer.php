@@ -41,7 +41,7 @@ class tool_coursesearch_renderer extends core_course_renderer
             if ($ob->tool_coursesearch_pingsolr()) {
                 $this->page->requires->js_init_call('M.tool_coursesearch.auto', $ob->tool_coursesearch_autosuggestparams());
                 $this->page->requires->js_init_call('M.tool_coursesearch.sort');
-                $mform = new coursesearch_resultsui_form(new moodle_url('/course/search.php'), null, 'post', null, array(
+                $mform = new coursesearch_resultsui_form(new moodle_url("/$CFG->admin/tool/coursesearch/example.php"), null, 'post', null, array(
                     "id" => "searchformui"
                 ));
                 $mform->display();
