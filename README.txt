@@ -33,7 +33,7 @@ replacing /copying the renderer file to your theme.
 3. Rename renderer class name according to your theme name.
 
 for example if you are using theme 'clean'.
-then rename the class names to 'theme_clean_core_renderer' & 'theme_clean_core_course_renderer'.
+then rename the class name to 'theme_clean_core_course_renderer'.
 
 OR you may either use search_cleantheme. This is also based on clean theme.
 
