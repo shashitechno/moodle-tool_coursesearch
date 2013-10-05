@@ -73,6 +73,9 @@ M.tool_coursesearch = {
     },
     clearSaveStatus: function (id) {
         Y.one(id).setHTML('');
+        if(id=='#solr-ping-status') {
+            M.tool_coursesearch.ping(Y);
+        }
     },
     loadcontent: function (Y) {
         Y.one('#id_solr-btn-loadcontent').once('click', function (e) {
