@@ -39,7 +39,7 @@ class coursesearch_settings_form extends moodleform
         $instance = $this->_customdata;
         $mform->addElement('header', 'course', get_string('solrheading', 'tool_coursesearch'));
         $mform->addElement('text', 'solrhost', get_string('solrhost', 'tool_coursesearch'));
-        $mform->setType('solrhost', PARAM_HOST);
+        $mform->setType('solrhost', PARAM_RAW);    // allow passing username and pass. example user:pass@host
         $mform->addHelpButton('solrhost', 'solrhost', 'tool_coursesearch');
         $mform->setDefault('solrhost', get_config('tool_coursesearch', 'solrhost'));
         $mform->addElement('text', 'solrport', get_string('solrport', 'tool_coursesearch'));
