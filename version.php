@@ -23,8 +23,9 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013060101; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2013060102; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2013051400; // Requires this Moodle version.
 $plugin->component = 'tool_coursesearch'; // Full name of the plugin (used for diagnostics).
 $plugin->release = '2.5 (Build: 2013051400)';
 $plugin->maturity = MATURITY_STABLE;
+$plugin->dependencies = array('theme_coursesearch' => ANY_VERSION);

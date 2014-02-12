@@ -37,6 +37,7 @@ class tool_coursesearch_solrlib
         return $this->errormessage;
     }
     public function connect($options, $ping = false, $path = '') {
+
         // Get the connection options.
         $this->solrhost = $options['solr_host'];
         $this->solrport = $options['solr_port'];
@@ -52,6 +53,9 @@ class tool_coursesearch_solrlib
             require_once($path . "SolrPhpClient/Apache/Solr/HttpTransport/Curl.php");
             $httptransport = new Apache_Solr_HttpTransport_Curl();
             $this->solr    = new Apache_Solr_Service($this->solrhost, $this->solrport, $this->solrpath, $httptransport);
+            $this->solr->setAuthenticationCredentials(
+                get_config('tool_coursesearch', 'solrusername'), get_config('tool_coursesearch', 'solrpassword'));
+
         } catch (Exception $e) {
             $this->errorcode    = $e->getCode();
             $this->errormessage = $e->getMessage();
@@ -60,7 +64,8 @@ class tool_coursesearch_solrlib
         // If we want to check if the server is alive, ping it.
         if ($ping) {
             try {
-                if (!$this->solr->ping()) {
+
+                if (!$this->solr->ping(2000)) {
                     $this->errorcode    = -1;
                     $this->errormessage = "Ping failed !";
                     return false;

@@ -18,14 +18,17 @@ must be used in your solr installation.
 
 Prerequisite: Java 5 or higher (a.k.a. 1.5.x), PHP 5.1.4 or higher, moodle 2.5 or higher.
 
-Step 1:-  ==== Installing cleantheme that renders the search results / Placing the renderer file ====
+Step 1:-  ==== Installing coursesearch theme that renders the search results / Placing the renderer file ====
+
+Note:- You can try how the search results will look like by going to /course/example.php without installing coursesearch theme or modifying rederers.php. 
+
 
 Here is two options either you may replace/copy your existing theme renderer with the one found in
-search_cleantheme(https://github.com/shashirepo/moodle-theme_cleantheme). OR you may install cleantheme itself.
+search_coursesearch theme(https://github.com/shashirepo/moodle-theme_coursesearch theme). OR you may install coursesearch theme itself.
 
 replacing /copying the renderer file to your theme.
 
-1. Copy renderer.php file from search_cleantheme replace it with your theme's renderer file.
+1. Copy renderers.php file from search_coursesearch theme replace it with your theme's renderer file.
 
 2. Standard moodle theme doesn't have any renderer file so you may simply copy this to your
    theme directory.
@@ -35,9 +38,9 @@ replacing /copying the renderer file to your theme.
 for example if you are using theme 'clean'.
 then rename the class name to 'theme_clean_core_course_renderer'.
 
-OR you may either use search_cleantheme. This is also based on clean theme.
+OR you may either use search_coursesearch theme. This is also based on clean theme.
 
-1. Download the cleantheme from here (https://github.com/shashirepo/moodle-theme_cleantheme) 
+1. Download the coursesearch theme from here (https://github.com/shashirepo/moodle-theme_cleantheme) 
 
 2. Extract the theme folder. and put it under moodle installation theme directory.
 
@@ -108,6 +111,8 @@ Administration->course->Course search settings(URL:- http://127.0.0.1/MoodleInst
 Solr Host:- localhost or 127.0.0.1
 Solr Port:- 8983 (Default port for Solr )
 Solr path :- /solr (Configuration directory for solr)
+Solr username :- if you're using authetication with solr. Give your http authetication username here.
+Solr password :- Give your solr http authetication password here.
 
 3. Click on "Check Solr instance Setting". if it Shows ping successful(with an success image). Now click save changes.
 

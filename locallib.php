@@ -49,7 +49,9 @@ class tool_coursesearch_locallib
             if ($solr->deleteall()) {
                 $arr['status'] = 'ok';
             } else {
-                $arr['status'] = 'error';
+                $arr['status']  = 'error';
+                $arr['code']    = $solr->get_errorcode();
+                $arr['message'] = $solr->get_errormessage();
             }
         } else {
             $arr['status']  = 'error';
@@ -67,7 +69,9 @@ class tool_coursesearch_locallib
             if ($solr->optimize()) {
                 $arr['status'] = 'ok';
             } else {
-                $arr['status'] = 'error';
+                $arr['status']  = 'error';
+                $arr['code']    = $solr->get_errorcode();
+                $arr['message'] = $solr->get_errormessage();
             }
         } else {
             $arr['status']  = 'error';
@@ -320,7 +324,7 @@ class tool_coursesearch_locallib
                 $fq = '';
             }
         } else {
-            $fq= '';
+            $fq = '';
         }
         $out = array();
         if (!$qry) {
@@ -367,9 +371,13 @@ class tool_coursesearch_locallib
      * @return array of solr configuration values 
      */
     public function tool_coursesearch_autosuggestparams() {
-        $config    = array();
-        $protocol  = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https://' : 'http://';
-        $config[0] = $protocol;
+        $config = array();
+        $this->tool_coursesearch_pingsolr();
+        $config[0] = get_config('tool_coursesearch', 'solrhost');
+        if (get_config('tool_coursesearch', 'solrusername') && get_config('tool_coursesearch', 'solrpassword')) {
+            $config[0] = get_config('tool_coursesearch', 'solrusername') . ':'
+            .get_config('tool_coursesearch', 'solrpassword').'@'. get_config('tool_coursesearch', 'solrhost');
+        }
         $config[1] = get_config('tool_coursesearch', 'solrport');
         $path      = get_config('tool_coursesearch', 'solrpath');
         stripos('/', $path) === true ? $path : $path = '/' . $path;
