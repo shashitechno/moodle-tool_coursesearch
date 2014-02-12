@@ -39,7 +39,7 @@ class coursesearch_settings_form extends moodleform
         $instance = $this->_customdata;
         $mform->addElement('header', 'course', get_string('solrheading', 'tool_coursesearch'));
         $mform->addElement('text', 'solrhost', get_string('solrhost', 'tool_coursesearch'));
-        $mform->setType('solrhost', PARAM_RAW);    // allow passing username and pass. example user:pass@host
+        $mform->setType('solrhost', PARAM_RAW);
         $mform->addHelpButton('solrhost', 'solrhost', 'tool_coursesearch');
         $mform->setDefault('solrhost', get_config('tool_coursesearch', 'solrhost'));
         $mform->addElement('text', 'solrport', get_string('solrport', 'tool_coursesearch'));
@@ -50,6 +50,14 @@ class coursesearch_settings_form extends moodleform
         $mform->setType('solrpath', PARAM_PATH);
         $mform->addHelpButton('solrpath', 'solrpath', 'tool_coursesearch');
         $mform->setDefault('solrpath', get_config('tool_coursesearch', 'solrpath'));
+        $mform->addElement('text', 'solrusername', get_string('solrusername', 'tool_coursesearch'));
+        $mform->setType('solrusername', PARAM_RAW);
+        $mform->addHelpButton('solrusername', 'solrusername', 'tool_coursesearch');
+        $mform->setDefault('solrusername', get_config('tool_coursesearch', 'solrusername'));
+        $mform->addElement('passwordunmask', 'solrpassword', get_string('solrpassword', 'tool_coursesearch'));
+        $mform->setType('solrpassword', PARAM_RAW);
+        $mform->addHelpButton('solrpassword', 'solrpassword', 'tool_coursesearch');
+        $mform->setDefault('solrpassword', get_config('tool_coursesearch', 'solrpassword'));
         $mform->addRule('solrhost', get_string('required'), 'required', null);
         $mform->addRule('solrport', get_string('required'), 'required', null);
         $mform->addRule('solrpath', get_string('required'), 'required', null);
