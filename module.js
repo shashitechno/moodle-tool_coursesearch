@@ -16,8 +16,7 @@ M.tool_coursesearch = {
         });
 
     },
-    auto: function (Y,rule,port,path) {
-
+    auto: function (Y, host, port, path) {
         YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', 'datasource', function (Y) {
 
             Y.one('body').addClass('yui3-skin-sam');
@@ -33,7 +32,7 @@ M.tool_coursesearch = {
 
                     return response.spellcheck.suggestions[1].suggestion;
                 },
-                source: rule+window.location.hostname+':'+port+path+'/suggest?wt=json&q={query}&json.wrf={callback}',
+                source: 'http://' + host + ':' + port + path + '/suggest?wt=json&q={query}&json.wrf={callback}',
             });
         });
     },
@@ -73,7 +72,7 @@ M.tool_coursesearch = {
     },
     clearSaveStatus: function (id) {
         Y.one(id).setHTML('');
-        if(id=='#solr-ping-status') {
+        if (id == '#solr-ping-status') {
             M.tool_coursesearch.ping(Y);
         }
     },
