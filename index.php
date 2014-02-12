@@ -46,6 +46,18 @@ if ($data = $form->get_data()) {
         $formdata->solrpath = $data->solrpath;
         set_config('solrpath', $data->solrpath, 'tool_coursesearch');
     }
+    if ($data->solrusername) {
+        $formdata->solrusername = $data->solrusername;
+        set_config('solrusername', $data->solrusername, 'tool_coursesearch');
+    } else {
+        set_config('solrusername', "", 'tool_coursesearch');
+    }
+    if ($data->solrpassword) {
+        $formdata->solrpassword = $data->solrpassword;
+        set_config('solrpassword', $data->solrpassword, 'tool_coursesearch');
+    } else {
+        set_config('solrpassword', "", 'tool_coursesearch');
+    }
     if (isset($data->enablespellcheck)) {
         $formdata->enablespellcheck = $data->enablespellcheck;
         set_config('enablespellcheck', $data->enablespellcheck, 'tool_coursesearch');
