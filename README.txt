@@ -98,7 +98,7 @@ Now start the solr application by opening a shell, changing directory to
 apache-solr-4.4.0/example, and executing the command java -jar start.jar
 
 Test that your solr server is now available by visiting
-http://localhost:8983/solr/admin/
+http://localhost:8983/solr/admin/ (the exact url depends over your configuration)
 
 Step 4:- === Testing with ping to solr ===
 
@@ -110,15 +110,15 @@ Administration->course->Course search settings(URL:- http://127.0.0.1/MoodleInst
 
 Solr Host:- localhost or 127.0.0.1
 Solr Port:- 8983 (Default port for Solr )
-Solr path :- /solr (Configuration directory for solr)
-Solr username :- if you're using authetication with solr. Give your http authetication username here.
-Solr password :- Give your solr http authetication password here.
+Solr Path :- /solr (Configuration directory for solr)
+Solr Username :- if you're using authetication with solr. Give your http authetication username here.
+Solr Password :- Give your solr http authetication password here.
 
 3. Click on "Check Solr instance Setting". if it Shows ping successful(with an success image). Now click save changes.
 
 4. Now click on "Index courses" to index all the courses. After successful indexing. It will come up with a success image.
 
-5. Click on "Optimize" to optimize the existing indexes And improve solr performance.
+5. Click on "Optimize" to optimize the existing indexes this improves solr performance and repair the indexes.
 
 
 Enjoy the Search by going on page (http://127.0.0.1/MoodleInstallationURL/course/search.php)
